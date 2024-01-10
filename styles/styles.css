@@ -10,19 +10,45 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #000;
+  --color-black: #000;
+  --color-white: #fff;
+  --global-ai-black: #1c1213;
+  --global-ai-bg-base: #fff;
+  --global-ai-purple: #531251;
+  --ai-color-purple: #531251;
+  --ai-color-dark-header: #1f2b34;
+  --ai-color-container: #f9f6ee;
+  --ai-text-body: #767676;
+  --ai-global-red: #da0e29;
+  --ai-highlight-color: #fff;
+  --ai-global-gray: #f7f8f8;
+  --ai-body-bg-color: #fff;
+  --ai-page-header-color: #b61032;
+  --ai-page-heading-color: #383c42;
+  --ai-page-description-color: #626773;
+  --ai-page-text-color: #626773;
+  --ai-page-link-color: #3174e0;
+  --ai-table-border-color: #edeef1;
+  --ai-accordion-bg-color: #f7f8f8;
+  --ai-accordion-border-color: #edeef1;
+  --ai-breadcrumb-active: #383c42;
+  --ai-breadcrumb-link-color: #828a99;
+  --ai-grey-border: #b0b5bf;
+  --ai-grey-light: #d3d6db;
+  --spacing-xl: 24px;
+  --spacing-medium: 16px;
+  --spacing-small: 12px;
+  --spacing-xs: 8px;
+  --font-size-small: 12px;
+  --global-colours-ai-blue-b-800: #11418f;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --body-font-family: "Nunito Sans";
+  --heading-font-family: airindiaregular;
+  --heading-font-family-bold: airindiabold;
+  --variable-font-family: "AirIndia Variable";
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -39,16 +65,7 @@
 
   /* nav height */
   --nav-height: 64px;
-
 }
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
-  src: local('Arial');
-}
-
 
 @media (width >= 900px) {
   :root {
@@ -79,24 +96,45 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
   margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { font-size: var(--heading-font-size-xxl) }
-h2 { font-size: var(--heading-font-size-xl) }
-h3 { font-size: var(--heading-font-size-l) }
-h4 { font-size: var(--heading-font-size-m) }
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+}
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
 
-p, dl, ol, ul, pre, blockquote {
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -108,13 +146,16 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
-  padding: .125em;
+code,
+samp {
+  padding: 0.125em;
 }
 
 pre {
@@ -124,7 +165,7 @@ pre {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
 }
@@ -140,7 +181,8 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -160,20 +202,25 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-a.button:hover, a.button:focus, button:hover, button:focus  {
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
 
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 main input {
