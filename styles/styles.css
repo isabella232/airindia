@@ -65,6 +65,18 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* heo height */
+  --hero-min-height-xs: 360px;
+  --hero-height-m: 584px;
+
+   /* Hero Line Height */
+   --hero-line-height: 1.5;
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+
+ 
 }
 
 @media (width >= 900px) {
@@ -278,16 +290,6 @@ main img {
 .icon img {
   height: 100%;
   width: 100%;
-}
-
-main .section {
-  padding: 64px 16px;
-}
-
-@media (width >= 600px) {
-  main .section {
-    padding: 64px 32px;
-  }
 }
 
 @media (width >= 900px) {
