@@ -1,0 +1,35 @@
+.block.table table {
+  border: 1px solid var(--ai-table-border-color);
+  margin-bottom: 10px;
+  width: 100%;
+  caption-side: bottom;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.block.table th {
+  text-align: inherit;
+}
+
+.block.table tbody,
+.block.table td,
+.block.table tfoot,
+.block.table th,
+.block.table thead,
+.block.table tr {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+}
+
+.block.table td {
+  border-bottom: 1px solid var(--ai-table-border-color);
+  border-left: 1px solid var(--ai-table-border-color);
+  color: var(--ai-page-text-color);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--hero-line-height);
+  padding: 8px 0.6pc;
+  text-align: left;
+  vertical-align: baseline;
+}
