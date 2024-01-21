@@ -1,0 +1,13 @@
+.separator{
+    margin: 12px;
+    background-color: var(--color-white);
+    border: 0.6px dashed var(--ai-color-dark-header);
+    color: var(--color-white);
+    opacity: .25;
+}
+
+@media (min-width: 767px) {
+    .separator{
+        margin: 20px 0;
+    }
+}

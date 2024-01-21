@@ -1,14 +1,207 @@
 footer {
-  padding: 2rem;
-  background-color: var(--overlay-background-color);
-  font-size: var(--body-font-size-s);
+  padding: 40px 0;
+  background: url("../../icons/header-pattern.svg") repeat-x,linear-gradient(0deg,var(--ai-color-container),var(--ai-color-container));
+}
+
+footer h6 {
+  color: var(--global-ai-purple);
+  font-size: var(--paragraph-font-size-s);
+  font-weight: 500;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-family: var(--variable-font-family);
+}
+
+footer .footer-top a, footer .footer-middle a{
+  color: var(--color-black);
+  font-weight: 400;
+  line-height: 17px;
+  text-decoration: none;
+  font-size: var(--paragraph-font-size-s);
+  white-space: nowrap;
+  padding: 5px 0;
+}
+
+footer .footer-top a:hover, footer .footer-middle a:hover {
+  text-decoration: underline;
+}
+
+.footer-top li, .footer-middle li{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 24px;
+}
+
+.footer-top ul, .footer-middle ul{
+  margin: 0;
+  padding: 0;
 }
 
 footer .footer {
-  max-width: 1200px;
+  max-width: var(--layout-max-width);
   margin: auto;
+  padding: 0;
+}
+
+@media (min-width: 992px) {  
+  footer .footer { 
+    padding: 0 15px;
+  }
+}
+
+.footer-middle-item p{
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-middle-item h6{
+  margin-top: 0;
 }
 
 footer .footer p {
   margin: 0;
+}
+
+footer .footer .footer-top-item p{
+  color: var(--ai-color-dark-header);
+  font-size: var(--paragraph-font-size-s);
+  line-height: 17px;
+  margin-bottom: 16px;
+}
+
+footer .footer .footer-top-item p a{
+  color: var(--ai-page-link-color);
+  text-decoration: underline;
+}
+
+.footer-end .default-content-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  font-size: var(--paragraph-font-size-s);
+  text-align: center;
+  margin: 12px;
+}
+
+.footer-top-item ul{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.footer-top-item{
+  border-bottom: 1px solid var(--ai-footer-text);
+}
+
+.footer-top-item h6::after {
+  content: '\276F';
+  transform: rotate(90deg);
+  color: var(--ai-accordion-icon-color);
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.footer-top .default-content-wrapper .footer-top-item:last-child h6::after{
+  content: '';
+}
+
+.footer-top .default-content-wrapper, .footer-middle .default-content-wrapper
+  {
+  display: grid;
+  grid-template-columns: 100%;
+  margin: 12px;
+}
+
+.footer-bottom .default-content-wrapper{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  margin: 12px;
+}
+
+.footer-end {
+  color: var(--ai-page-description-color);
+}
+
+.footer-bottom, .footer-end{
+  display: flex;
+}
+
+.footer-bottom img {
+  width: 100%;
+  height: auto;
+}
+
+.footer-top-item .active::after {
+  content: "\276F";
+  transform: rotate(270deg);
+}
+
+  @media (min-width: 768px) {  
+  .footer-top-item ul{
+    max-height: 100%;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+  }
+
+  .footer-top .default-content-wrapper, .footer-middle .default-content-wrapper{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 20px;
+    margin: 12px;
+  }
+
+  .footer-top .default-content-wrapper .footer-top-item:last-child ul{
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .footer-top-item{
+    border-bottom: none;
+  }
+
+  .footer-top-item h6::after{
+    content: none;
+  }
+
+  footer .footer .footer-top-item p:nth-child(3){
+    display: flex;
+  }
+
+  footer .footer .footer-top-item p img{
+    height: 43px;
+    width: 100%;
+    padding-right: 10px;
+  }
+
+  .footer-bottom .default-content-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .footer .separator {
+    margin: 0 15px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .footer-top .default-content-wrapper, .footer-middle .default-content-wrapper{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: 20px;
+    margin: 12px 0;
+  }
+
+  .footer .separator {
+    margin: 20px 0;
+  }
 }

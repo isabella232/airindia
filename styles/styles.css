@@ -37,6 +37,8 @@
   --ai-breadcrumb-link-color: #828a99;
   --ai-grey-border: #b0b5bf;
   --ai-grey-light: #d3d6db;
+  --ai-accordion-icon-color: #777;
+  --ai-footer-text: #eaeaea;
   --global-colours-ai-blue-b-800: #11418f;
 
   /* spacing */
@@ -73,9 +75,15 @@
   --heading-font-size-s: 20px;
   --heading-font-size-xs: 18px;
 
+  /* paragraph font size */
+  --paragraph-font-size-s: 14px;
+
   /* nav height */
   --nav-height: 64px;
 
+  /* layout width */
+  --layout-max-width: 1200px;
+  
   /* heo height */
   --hero-min-height-xs: 360px;
   --hero-height-m: 584px;
@@ -165,6 +173,44 @@ main .section ul>li::before {
   top: 7.25px;
   transform: rotate(45deg);
   width: 7px;
+}
+
+main input:hover {
+  border: 1px solid var(--text-color);
+}
+
+main blockquote {
+  font-style: italic;
+  margin: 3rem;
+  text-indent: -1rem;
+  hanging-punctuation: first;
+}
+
+main blockquote p::before {
+  content: "“";
+  line-height: 0;
+}
+
+main blockquote p::after {
+  content: "”";
+  line-height: 0;
+}
+
+main img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+.icon {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+}
+
+.icon img {
+  height: 100%;
+  width: 100%;
 }
 
 @media (width >=768px) {
