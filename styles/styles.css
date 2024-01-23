@@ -37,30 +37,42 @@
   --ai-breadcrumb-link-color: #828a99;
   --ai-grey-border: #b0b5bf;
   --ai-grey-light: #d3d6db;
+  --ai-overlay-bg-color: #fff;
+  --ai-box-shadow-color: #00000029;
+  --ai-title-gray-color: #a3a3a3;
   --ai-accordion-icon-color: #777;
   --ai-footer-text: #eaeaea;
   --global-colours-ai-blue-b-800: #11418f;
 
   /* spacing */
-  --spacing-xl: 24px;
-  --spacing-medium: 16px;
-  --spacing-small: 12px;
-  --spacing-xs: 8px;
+  --spacing-xl: 1.5rem;
+  --spacing-medium: 1rem;
+  --spacing-small: 0.75rem;
+  --spacing-xs: 0.5rem;
 
   /* font sizes */
-  --font-size-small: 12px;
+  --font-size-small: 0.75rem;
 
 
   /* fonts */
-  --body-font-family: "Nunito Sans";
-  --heading-font-family: airindiaregular;
+  --body-font-family: 'Nunito Sans';
+  --ai-regular-font-family: airindiaregular, sans-serif;
   --heading-font-family-bold: airindiabold;
-  --variable-font-family: "AirIndia Variable";
+  --variable-font-family: 'AirIndia Variable';
+
+  /* header sizes */
+  --header-font-size-xxl: 3rem;
+  --header-font-size-xl: 2rem;
+  --header-font-size-l: 1.5rem;
+  --header-font-size-m: 1rem;
+  --header-font-size-s: 0.75rem;
+  --header-font-size-xs: 0.625rem;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
+  --layout-max-width: 79rem;
+  --body-font-size-m: 1.375rem;
+  --body-font-size-s: 1.125rem;
+  --body-font-size-xs: 1rem;
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
@@ -68,21 +80,20 @@
 
 
   /* heading sizes */
-  --heading-font-size-xxl: 48px;
-  --heading-font-size-xl: 40px;
-  --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
-  --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xxl: 3rem;
+  --heading-font-size-xl: 2.5rem;
+  --heading-font-size-l: 2rem;
+  --heading-font-size-m: 1.5rem;
+  --heading-font-size-s: 0.75rem;
+  --heading-font-size-xs: 0.625rem;
 
   /* paragraph font size */
   --paragraph-font-size-s: 14px;
 
   /* nav height */
-  --nav-height: 64px;
-
-  /* layout width */
-  --layout-max-width: 1200px;
+  --nav-height: 4rem;
+  --nav-height-desktop: 8.5rem;
+  --nav-height-desktop-short: 6rem;
   
   /* heo height */
   --hero-min-height-xs: 360px;
@@ -96,10 +107,26 @@
 
 }
 
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 3.75rem;
+    --heading-font-size-xl: 3rem;
+    --heading-font-size-l: 2.25rem;
+    --heading-font-size-m: 1.875rem;
+    --heading-font-size-s: 1.5rem;
+    --heading-font-size-xs: 1.375rem;
+  }
+}
+
 *,
 ::after,
 ::before {
   box-sizing: border-box;
+}
+
+html {
+  /* 1rem = 16px */
+  font-size: 16px;
 }
 
 body {
@@ -116,6 +143,10 @@ body {
   position: relative;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body.appear {
   display: block;
 }
@@ -123,6 +154,25 @@ body.appear {
 main .section {
   margin-bottom: 1pc;
   margin-inline: auto;
+  padding: 4rem 1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  scroll-margin: calc(var(--nav-height) + 1em);
 }
 
 main .section>div {
@@ -136,9 +186,74 @@ main .section h3 {
   background: var(--ai-global-gray);
   color: var(--ai-page-heading-color);
   font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+hr {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  border: 0;
+  border-bottom: 1px solid var(--overlay-background-color);
+}
+
+code,
+pre,
+samp {
+  font-family: var(--fixed-font-family);
+  font-size: var(--body-font-size-s);
+}
+
+code,
+samp {
+  padding: 0.125em;
+}
+
+pre {
+  overflow: scroll;
+}
+
+main pre {
+  background-color: var(--overlay-background-color);
+  padding: 1em;
+  border-radius: 0.25em;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* buttons */
+a.button:any-link,
+button {
+  font-family: var(--body-font-family);
+  display: inline-block;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 5px 30px;
+  text-align: center;
+  font-style: normal;
   font-weight: 600;
+  cursor: pointer;
+  color: var(--background-color);
+  background-color: var(--link-color);
+  margin: 1rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 2rem;
   line-height: 24px;
-  padding: 10px;
 }
 
 main .section p {
@@ -175,6 +290,23 @@ main .section ul>li::before {
   width: 7px;
 }
 
+input {
+  font-size: 1.1rem;
+}
+
+main input {
+  font-size: 1.25rem;
+  width: 100%;
+  max-width: 50rem;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.6rem;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+
 main input:hover {
   border: 1px solid var(--text-color);
 }
@@ -187,12 +319,12 @@ main blockquote {
 }
 
 main blockquote p::before {
-  content: "“";
+  content: '“';
   line-height: 0;
 }
 
 main blockquote p::after {
-  content: "”";
+  content: '”';
   line-height: 0;
 }
 
@@ -204,8 +336,8 @@ main img {
 
 .icon {
   display: inline-block;
-  height: 24px;
-  width: 24px;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 .icon img {
@@ -213,8 +345,31 @@ main img {
   width: 100%;
 }
 
-@media (width >=768px) {
-  main .section>div {
-    max-width: 1200px;
+
+/* section metadata */
+main .section.highlight {
+  background-color: var(--highlight-background-color);
+}
+
+.sr-only {
+  display: none;
+}
+
+/** MEDIA QUERY FOR >MOBILE */
+@media (min-width: 768px) {
+  main .section {
+    padding: 4rem 2rem;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .section > div {
+    max-width: 75rem;
+    margin: auto;
+  }
+
+  header {
+    height: var(--nav-height-desktop);
   }
 }
