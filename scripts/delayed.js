@@ -2,6 +2,7 @@
 import { sampleRUM, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getEnvType } from './scripts.js';
+import loadExternalComponent from './utils/initializer.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -34,3 +35,6 @@ async function loadAdobeLaunch() {
 
 await loadAdobeLaunch();
 await loadGTM();
+
+// Load chatbot script
+loadExternalComponent('chatbot');

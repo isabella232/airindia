@@ -205,3 +205,14 @@ footer .footer .footer-top-item p a{
     margin: 20px 0;
   }
 }
+
+/** fix for chatbot css conflicts **/
+
+footer.block {
+  font-family: var(--body-font-family);
+}
+
+footer.block h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}

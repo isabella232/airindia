@@ -673,3 +673,19 @@ header nav .nav-tools {
 .header:not(.inverted) .skip-main:focus {
   color: var(--color-white);
 }
+
+
+/** fix for chatbot css conflicts **/
+
+header .block nav .nav-sections .nav-drop .link-title, 
+header .block nav .nav-sections .nav-drop .sub-link-title,
+header .block nav .nav-sections .sub-nav-drop .sub-link-title, 
+header .block .nav-wrapper .section.nav-tools .default-content-wrapper, 
+header .block nav .nav-sections .sub-nav-drop .go-back {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+header .block nav a:any-link {
+  text-decoration: none;
+}
