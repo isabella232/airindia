@@ -4,12 +4,13 @@ main .hero-container>div {
   max-width: unset;
 }
 
-main .hero-container {
-  margin-top: calc(var(--nav-height) * -1);
-}
-
+main .hero-container,
 main .hero-container .hero-wrapper {
   padding: 0;
+}
+
+main .hero-container .hero-wrapper p{
+  margin: 0;
 }
 
 main .hero {
