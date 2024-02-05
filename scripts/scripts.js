@@ -1,3 +1,4 @@
+import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 import {
   sampleRUM,
   buildBlock,
@@ -13,7 +14,6 @@ import {
   loadCSS,
   fetchPlaceholders,
 } from './aem.js';
-import { initServiceWorker } from './utils/helpers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -142,7 +142,10 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  // Initialize service worker
+  // TODO: remove once the API is ready
   initServiceWorker();
+
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
   await fetchPlaceholders();

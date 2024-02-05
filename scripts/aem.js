@@ -239,9 +239,16 @@ function readBlockConfig(block) {
  * Loads a CSS file.
  * @param {string} href URL to the CSS file
  */
-async function loadCSS(href) {
+async function loadCSS(href, element) {
   return new Promise((resolve, reject) => {
-    if (!document.querySelector(`head > link[href="${href}"]`)) {
+    if (element && !element.querySelector(`link[href="${href}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = href;
+      link.onload = resolve;
+      link.onerror = reject;
+      element.append(link);
+    } else if (!document.querySelector(`head > link[href="${href}"]`)) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = href;
@@ -259,9 +266,21 @@ async function loadCSS(href) {
  * @param {string} src URL to the JS file
  * @param {Object} attrs additional optional attributes
  */
-async function loadScript(src, attrs) {
+async function loadScript(src, attrs, element) {
   return new Promise((resolve, reject) => {
-    if (!document.querySelector(`head > script[src="${src}"]`)) {
+    if (element && !element.querySelector(`script[src="${src}"]`)) {
+      const script = document.createElement('script');
+      script.src = src;
+      if (attrs) {
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        for (const attr in attrs) {
+          script.setAttribute(attr, attrs[attr]);
+        }
+      }
+      script.onload = resolve;
+      script.onerror = reject;
+      element.append(script);
+    } else if (!document.querySelector(`head > script[src="${src}"]`)) {
       const script = document.createElement('script');
       script.src = src;
       if (attrs) {

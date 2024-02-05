@@ -31,7 +31,7 @@ main .hero::after {
 
 main .hero h2 {
   font-family: var(--body-font-family);
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-font-size-m);
   font-weight: var(--font-weight-bold);
   line-height: var(--hero-line-height);
   color: var(--color-white);

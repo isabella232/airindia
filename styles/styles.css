@@ -154,7 +154,7 @@ body.appear {
 main .section {
   margin-bottom: 1pc;
   margin-inline: auto;
-  padding: 4rem 1rem;
+  padding: 0 1rem 1rem;
 }
 
 a {
@@ -264,7 +264,7 @@ button {
   line-height: 24px;
 }
 
-main .section p {
+main .section.table-container p {
   color: var(--ai-page-text-color);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
@@ -272,12 +272,12 @@ main .section p {
   margin-bottom: 10px;
 }
 
-main .section ul {
+main .section.table-container ul {
   margin-bottom: 1pc;
   padding-left: 0;
 }
 
-main .section ul>li {
+main .section.table-container ul>li {
   color: var(--ai-page-text-color);
   font-size: 1pc;
   list-style: none;
@@ -286,7 +286,7 @@ main .section ul>li {
   position: relative;
 }
 
-main .section ul>li::before {
+main .section.table-container ul>li::before {
   border: 1px solid var(--ai-global-red);
   border-width: 2px 2px 0 0;
   content: "";
@@ -364,14 +364,13 @@ main .section.highlight {
 }
 
 /** MEDIA QUERY FOR >MOBILE */
-@media (min-width: 768px) {
-  main .section {
-    padding: 4rem 2rem;
-  }
-}
 
 
 @media (min-width: 1024px) {
+  main .section {
+    padding: 0 2rem 2rem;
+  }
+
   .section > div {
     max-width: 75rem;
     margin: auto;
@@ -385,7 +384,7 @@ main .section.highlight {
 
 /** fix for chatbot css conflicts **/
 
-html body.appear {
+/* html body.appear {
   background-color: var(--ai-global-gray);
   font-family: var(--body-font-family);
   font-size: var(--bs-body-font-size);
@@ -397,4 +396,4 @@ html body.appear {
 
 body.appear main h3, body.appear main p{
   margin: 16px 0;
-}
+} */

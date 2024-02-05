@@ -1,0 +1,39 @@
+{
+  "code": "0",
+  "message": "",
+  "extendedMessage": null,
+  "status": "SUCCESS",
+  "hasError": false,
+  "responsePayload": {
+      "domainValues": [
+          {
+              "id": 1,
+              "attributes": {
+                  "classValue": "ECONOMY",
+                  "className": "Economy"
+              }
+          },
+          {
+              "id": 4,
+              "attributes": {
+                  "classValue": "PEYCFF",
+                  "className": "Premium Economy"
+              }
+          },
+          {
+              "id": 2,
+              "attributes": {
+                  "classValue": "BUSINESS",
+                  "className": "Business"
+              }
+          },
+          {
+              "id": 3,
+              "attributes": {
+                  "classValue": "FIRST",
+                  "className": "First"
+              }
+          }
+      ]
+  }
+}
