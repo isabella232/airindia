@@ -1,6 +1,6 @@
 import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getPlaceholderDataFor } from '../../scripts/utils.js';
+import { getUserInfo, getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils/headerUtils.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1024px)');
@@ -131,7 +131,7 @@ function openSubNavMobile(menu) {
 }
 
 function closeSubNavMobile() {
-  document.querySelector('.sub-nav-drop').remove();
+  document.querySelector('.sub-nav-drop')?.remove();
 }
 
 function delegateNavSectionsClick(e) {
@@ -191,13 +191,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
       navSections.insertBefore(searchBox, navSections.firstElementChild);
     }
   }
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-  }
 }
 
 function handleNavSectionExpand(navSection, navSections, action = 'toggle') {
@@ -230,9 +223,43 @@ function headerSearchClickHandler(search, navSections) {
   navSections.classList.add('search-show');
 }
 
+async function setupProfileInfo(profileElem) {
+  const userInfo = await getUserInfo();
+  profileElem?.classList.add('profile');
+  const profileWrapper = document.createElement('div');
+  profileWrapper.className = 'profile-wrapper';
+  profileWrapper.innerHTML = `
+    <div class="user-icon">${userInfo?.initials}</div>
+    <h2 class="user-name">${userInfo?.name}</h2>
+    <div class="user-ffn">
+      <span class="title">FFN:</span>
+      <span class="value">${userInfo?.ffn}</span>
+    </div>
+    <div class="user-email">${userInfo?.email}</div>
+    <h6 class="user-points">${userInfo?.points} POINTS</h6>
+    <div class="user-club">${userInfo?.club}</div>
+    <div class="user-actions">
+      <button type="button" class="my-account">My account</button>
+      <button type="button" class="change-pwd">Change Password</button>
+      <button type="button" class="logoutbtn">Log out</button>
+    </div>
+  `;
+
+  profileElem?.appendChild(profileWrapper);
+  // profileElem.addEventListener('click', toggleProfileInfo);
+}
+
+function toggleProfileInfo() {
+  document.querySelector('.profile-wrapper')?.classList.toggle('show');
+}
+
+function hideProfileInfo() {
+  document.querySelector('.profile-wrapper')?.classList.remove('show');
+}
+
 function decorateNavTools(navSections) {
   const navTools = document.querySelector('.nav-tools');
-  navSections.insertBefore(navTools, navSections.firstChild);
+  // navSections.insertBefore(navTools, navSections.firstChild);
   const navToolLists = Array.from(navTools.querySelectorAll('ul>li')) || [];
   navToolLists.forEach((list) => {
     if (list.querySelector('ul')) {
@@ -247,6 +274,17 @@ function decorateNavTools(navSections) {
   const search = navTools.querySelector('.icon-search')?.parentNode;
   if (search) {
     search.addEventListener('click', headerSearchClickHandler.bind(null, search, navSections));
+  }
+
+  const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
+  if (isLoggedIn() && paragraphs?.length >= 0) {
+    paragraphs[paragraphs.length - 2]?.classList.add('hide');
+    paragraphs[paragraphs.length - 1]?.classList.add('show');
+    setupProfileInfo(paragraphs[paragraphs.length - 1]);
+    paragraphs[paragraphs.length - 1]?.addEventListener('click', toggleProfileInfo);
+  } else {
+    paragraphs[paragraphs.length - 1]?.classList.add('hide');
+    paragraphs[paragraphs.length - 2]?.classList.add('show');
   }
 }
 
@@ -276,6 +314,22 @@ async function addSkipToMain() {
   // add id to main element to support skip link
   const main = document.querySelector('main');
   main.id = 'main';
+}
+
+function globalEscapeHandler(e) {
+  closeOnEscape(e);
+  hideProfileInfo();
+}
+
+function addGlobalEventHandlers() {
+  addScrollHandler();
+  // enable menu collapse on escape keypress
+  if (isDesktop.matches) {
+    // collapse menu on escape press
+    window.addEventListener('keydown', globalEscapeHandler);
+  } else {
+    window.removeEventListener('keydown', globalEscapeHandler);
+  }
 }
 
 /**
@@ -315,12 +369,15 @@ export default async function decorate(block) {
     navSections.querySelectorAll('.default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections);
       });
       navSection.addEventListener('focus', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections, 'expand');
       });
       navSection.addEventListener('mouseover', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections, 'expand');
       });
       navSection.addEventListener('mouseleave', () => {
@@ -353,7 +410,7 @@ export default async function decorate(block) {
   block.append(navWrapper);
 
   decorateNavTools(navSections);
-  addScrollHandler();
+  addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
 }

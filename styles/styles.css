@@ -188,6 +188,14 @@ main .section h3 {
   font-size: var(--heading-font-size-s);
 }
 
+h4 {
+  font-size: var(--header-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-xs);
+}
+
 h6 {
   font-size: var(--heading-font-size-xs);
 }
