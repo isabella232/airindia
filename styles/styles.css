@@ -264,6 +264,10 @@ button {
   line-height: 24px;
 }
 
+header {
+  position: fixed;
+}
+
 main .section.table-container p {
   color: var(--ai-page-text-color);
   font-size: var(--bs-body-font-size);
