@@ -97,7 +97,7 @@ self.addEventListener('fetch', async (event) => {
   const hostURL = new URL(self.location);
   const { request } = event;
   // Check if the request is an API request with a different port
-  if (((request.url.includes('api') && !request.url.includes('chrome-extension')) || request.url.includes('EnvironmentVariableServlet')) && hostURL.port !== '4502') {
+  if (((request.url.includes('api') && !request.url.includes('cbot') && !request.url.includes('chrome-extension')) || request.url.includes('EnvironmentVariableServlet')) && hostURL.port !== '4502') {
     const paths = request.url.split('/');
     console.log('[sw.js] fetch: API request and not from the port 4502 =>', request.url);
     if (tokens.includes(paths[paths.length - 1])) {
