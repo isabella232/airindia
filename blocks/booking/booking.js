@@ -2,7 +2,7 @@ import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 const urlParams = 'https://www.airindia.in';
 
-const configModelUrl = `${urlParams}/content/.EnvironmentVariableServlet.json`;
+const configModelUrl = (window.location.hostname === urlParams) ? `${urlParams}/content/.EnvironmentVariableServlet.json` : '/blocks/booking/config.json';
 
 let envParam = {};
 let vaultServiceUrl = '';
