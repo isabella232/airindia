@@ -12,13 +12,13 @@
 /* header and nav layout */
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 9999999999;
 }
 
 header .nav-wrapper {
   position: fixed;
   background-color: transparent;
-  width: 100%;
+  width: 100vw;
   z-index: 2;
   top: 0;
   height: var(--nav-height);
@@ -27,6 +27,7 @@ header .nav-wrapper {
 }
 
 header .nav-wrapper:hover,
+header .nav-wrapper.expanded,
 header .nav-wrapper.short {
   background-color: var(--ai-overlay-bg-color);
   box-shadow: var(--box-shadow-bottom);
@@ -65,6 +66,52 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p.show {
 
 header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
   position: relative;
+}
+
+header
+  .nav-wrapper
+  .section.nav-tools
+  .default-content-wrapper
+  .profile
+  .icon-profile {
+  background-image: url('../../icons/signin-light.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+header
+  .nav-wrapper:hover
+  .section.nav-tools
+  .default-content-wrapper
+  .profile
+  .icon-profile,
+header
+  .nav-wrapper.expanded
+  .section.nav-tools
+  .default-content-wrapper
+  .profile
+  .icon-profile {
+  background-image: url('../../icons/signin.svg');
+}
+
+header nav .nav-brand img {
+  width: 9rem;
+  height: 3.5rem;
+}
+
+header nav .nav-sections .sub-nav-drop picture,
+header nav .nav-sections .sub-nav-drop img {
+  display: none;
+}
+
+header
+  .nav-wrapper
+  .section.nav-tools
+  .default-content-wrapper
+  .profile
+  .icon-profile
+  img {
+  display: none;
 }
 
 header
@@ -206,7 +253,8 @@ header nav .nav-hamburger button {
 }
 
 header .nav-wrapper:hover nav .nav-hamburger button,
-header .nav-wrapper.short nav .nav-hamburger button {
+header .nav-wrapper.short nav .nav-hamburger button,
+header .nav-wrapper.expanded nav .nav-hamburger button {
   color: inherit;
 }
 
@@ -281,18 +329,15 @@ header .nav-brand .icon.icon-ai-logo-red {
 }
 
 header .nav-wrapper:hover .nav-brand .icon.icon-ai-logo-red,
+header .nav-wrapper.expanded .nav-brand .icon.icon-ai-logo-red, 
 header .nav-wrapper.short .nav-brand .icon.icon-ai-logo-red {
   display: block;
 }
 
 header .nav-wrapper:hover .nav-brand .icon.icon-ai-logo-white,
+header .nav-wrapper.expanded .nav-brand .icon.icon-ai-logo-white,
 header .nav-wrapper.short .nav-brand .icon.icon-ai-logo-white {
   display: none;
-}
-
-header nav .nav-brand img {
-  width: 7.25rem;
-  height: 3rem;
 }
 
 /* sections */
@@ -307,7 +352,6 @@ header nav .nav-sections {
   height: 90vh;
   padding: 0 1rem;
   width: 100vw;
-  color: #fff;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -320,12 +364,14 @@ header .nav-wrapper nav .nav-tools {
   color: #fff;
   display: flex;
   justify-content: flex-end;
-  margin-right: 32px;
+  margin-right: 40px;
 }
 
 header .nav-wrapper:hover nav .nav-sections,
+header .nav-wrapper.expanded nav .nav-sections,
 header .nav-wrapper.short nav .nav-sections,
 header .nav-wrapper:hover nav .nav-tools,
+header .nav-wrapper.expanded nav .nav-tools,
 header .nav-wrapper.short nav .nav-tools {
   color: var(--ai-page-text-color);
 }
@@ -336,15 +382,19 @@ header .nav-wrapper nav .nav-tools .icon-signin {
   display: none;
 }
 
-header .nav-wrapper:hover nav .nav-tools .icon {
+header .nav-wrapper:hover nav .nav-tools .icon,
+header .nav-wrapper.expanded nav .nav-tools .icon {
   display: block;
 }
 
 header .nav-wrapper:hover nav .nav-tools .icon-search-light,
+header .nav-wrapper.expanded nav .nav-tools .icon-search-light,
 header .nav-wrapper.short nav .nav-tools .icon-search-light,
 header .nav-wrapper:hover nav .nav-tools .icon-support-light,
+header .nav-wrapper.expanded nav .nav-tools .icon-support-light,
 header .nav-wrapper.short nav .nav-tools .icon-support-light,
 header .nav-wrapper:hover nav .nav-tools .icon-signin-light,
+header .nav-wrapper.expanded nav .nav-tools .icon-signin-light,
 header .nav-wrapper.short nav .nav-tools .icon-signin-light {
   display: none;
 }
@@ -475,11 +525,6 @@ header nav .nav-sections .sub-nav-drop li.sub-link-text {
   font-weight: 500;
 }
 
-header nav .nav-sections .sub-nav-drop picture,
-header nav .nav-sections .sub-nav-drop img {
-  display: none;
-}
-
 /** Search **/
 .header-nav-search-box {
   position: relative;
@@ -535,6 +580,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   header .nav-wrapper {
     height: var(--nav-height-desktop);
     transition: var(--header-transition-rapid);
+    padding-top: 0.5rem;
   }
 
   header .nav-wrapper.short {
@@ -570,6 +616,8 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   header .nav-brand {
     grid-area: unset;
     grid-row: span 2;
+    padding-bottom: 20px;
+    margin-left: -8px;
   }
 
   header nav .nav-sections {
@@ -616,7 +664,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
 
   header nav .nav-sections .default-content-wrapper > ul {
     display: flex;
-    gap: 2em;
+    gap: 0.5rem;
     margin: 0;
     font-size: var(--body-font-size-xs);
     justify-content: flex-end;
@@ -757,6 +805,31 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     margin-left: 1rem;
   }
 
+  header
+    .nav-wrapper
+    .section.nav-tools
+    .default-content-wrapper
+    .profile
+    .icon-profile,
+  header
+    .nav-wrapper:hover
+    .section.nav-tools
+    .default-content-wrapper
+    .profile
+    .icon-profile {
+    background-image: none;
+  }
+
+  header
+    .nav-wrapper
+    .section.nav-tools
+    .default-content-wrapper
+    .profile
+    .icon-profile
+    img {
+    display: block;
+  }
+
   header .nav-wrapper .section.nav-tools .default-content-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -764,6 +837,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     font-size: inherit;
     cursor: pointer;
     height: 2.25rem;
+    margin: 0;
     transition: var(--header-transition-rapid);
   }
 
@@ -926,11 +1000,18 @@ header
   .default-content-wrapper,
 header
   .block
+  .nav-wrapper.expanded
+  nav
+  .section.nav-tools
+  .default-content-wrapper,
+header
+  .block
   .nav-wrapper.short
   nav
   .section.nav-tools
   .default-content-wrapper,
-header .block .nav-wrapper:hover nav .nav-sections .nav-drop .link-title {
+header .block .nav-wrapper:hover nav .nav-sections .nav-drop .link-title,
+header .block .nav-wrapper.expanded nav .nav-sections .nav-drop .link-title {
   color: var(--color-black);
   text-decoration: none;
 }

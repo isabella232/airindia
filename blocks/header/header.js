@@ -156,6 +156,10 @@ function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 
+function hideProfileInfo() {
+  document.querySelector('.profile-wrapper')?.classList.remove('show');
+}
+
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -163,11 +167,17 @@ function focusNavSection() {
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
+  hideProfileInfo();
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  if (!expanded) {
+    document.querySelector('header .nav-wrapper')?.classList.add('expanded');
+  } else {
+    document.querySelector('header .nav-wrapper')?.classList.remove('expanded');
+  }
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
@@ -178,6 +188,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
         drop.addEventListener('focus', focusNavSection);
       }
     });
+    document.querySelector('header .nav-wrapper')?.classList.remove('expanded');
     removeHeaderSearchBox();
   } else {
     navDrops.forEach((drop) => {
@@ -251,10 +262,6 @@ async function setupProfileInfo(profileElem) {
 
 function toggleProfileInfo() {
   document.querySelector('.profile-wrapper')?.classList.toggle('show');
-}
-
-function hideProfileInfo() {
-  document.querySelector('.profile-wrapper')?.classList.remove('show');
 }
 
 function decorateNavTools(navSections) {
