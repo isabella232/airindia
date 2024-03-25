@@ -12302,6 +12302,13 @@ main .section.booking-container .booking-wrapper {
     margin: 0;
 }
 
+.booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {
+    margin-left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 200%;
+}
+
 
 @media screen and (min-width: 767px) {
     main .section.booking-container .booking-wrapper { 
