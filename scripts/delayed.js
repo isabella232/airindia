@@ -38,6 +38,16 @@ async function loadAdobeLaunch() {
   await loadScript(adobeotmSrc[getEnvType()]);
 }
 
+async function loadCookieConsentManager() {
+  const ccm = {
+    dev: '071fd164-e45b-4e9b-a106-021c14d33a7b-test',
+    preview: '071fd164-e45b-4e9b-a106-021c14d33a7b-test',
+    live: '071fd164-e45b-4e9b-a106-021c14d33a7b',
+  };
+  await loadScript('https://cdn.cookielaw.org/scripttemplates/otSDKStub.js', { 'data-domain-script': ccm[getEnvType()] });
+}
+
+await loadCookieConsentManager();
 await loadAdobeLaunch();
 await loadGTM();
 
