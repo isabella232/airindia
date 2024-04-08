@@ -12,7 +12,7 @@
 /* header and nav layout */
 header {
   position: fixed;
-  z-index: 999999;
+  z-index: 999;
 }
 
 header .nav-wrapper {
@@ -568,6 +568,37 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   display: none;
 }
 
+.nav-badge {
+  align-items: center;
+  animation: nav-badge 12s linear infinite;
+  animation-fill-mode: forward;
+  background: var(--gradient-100);
+  border-radius: 2px;
+  justify-content: center;
+  padding: 3px;
+  position: absolute;
+  bottom: 90%;
+  left: 100%;
+  display: none;
+}
+
+.nav-badge-text {
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .2px;
+  line-height: 9px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.nav-badge-text span {
+  animation: rotatetext 12s linear infinite;
+  animation-fill-mode: forwards;
+  display: inline-block;
+  font-style: normal;
+}
+
 /** MEDIA QUERY FOR >MOBILE */
 
 @media (min-width: 1024px) {
@@ -800,7 +831,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   header nav .nav-sections .nav-drop .sub-link-text img {
     position: relative;
     top: -2.5rem;
-    width: 80%;
+    width: 95%;
     height: auto;
     margin-left: 1rem;
   }
@@ -953,6 +984,10 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     font-weight: normal;
     cursor: pointer;
   }
+
+  .nav-badge {
+    display: inline-flex;
+  }
 }
 
 /* skip main */
@@ -1014,4 +1049,79 @@ header .block .nav-wrapper:hover nav .nav-sections .nav-drop .link-title,
 header .block .nav-wrapper.expanded nav .nav-sections .nav-drop .link-title {
   color: var(--color-black);
   text-decoration: none;
+}
+
+/*
+ANIMATION
+**/
+
+@keyframes nav-badge {
+  0.0%,
+  16.67%,
+  8.33% {
+    background: var(--gradient-100);
+    color: var(--color-white);
+    transform: rotateY(0deg)
+  }
+
+  25.0%,
+  33.33%,
+  41.67% {
+    background: var(--gradient-103);
+    color: var(--global-ai-black);
+    transform: rotateY(180deg)
+  }
+
+  50.0%,
+  58.33%,
+  66.67% {
+    background: var(--gradient-90);
+    color: var(--global-ai-black);
+    transform: rotateY(1turn)
+  }
+
+  75.0%,
+  83.33%,
+  91.67% {
+    background: var(--global-ai-black);
+    border-radius: 2px;
+    color: var(--color-white);
+    transform: rotateY(540deg)
+  }
+
+  100.0% {
+    background: var(--gradient-100);
+    color: var(--color-white);
+    transform: rotateY(2turn)
+  }
+}
+
+@keyframes rotatetext {
+  0.0%,
+  16.67%,
+  8.33% {
+    transform: rotateY(0deg)
+  }
+
+  25.0%,
+  33.33%,
+  41.67% {
+    transform: rotateY(-180deg)
+  }
+
+  50.0%,
+  58.33%,
+  66.67% {
+    transform: rotateY(-1turn)
+  }
+
+  75.0%,
+  83.33%,
+  91.67% {
+    transform: rotateY(-540deg)
+  }
+
+  100.0% {
+    transform: rotateY(-2turn)
+  }
 }

@@ -44,6 +44,11 @@
   --ai-footer-text: #eaeaea;
   --global-colours-ai-blue-b-800: #11418f;
 
+  /* gradients */
+  --gradient-100: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
+  --gradient-103: linear-gradient(103deg, #eceef0 -131.29%, #bcc0be 109.54%);
+  --gradient-90: linear-gradient(90deg, #fed9a0 -321.46%, #ebbe69 99.9%);
+
   /* spacing */
   --spacing-xl: 1.5rem;
   --spacing-medium: 1rem;

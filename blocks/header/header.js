@@ -16,12 +16,35 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
+function wrapPictueWithLink(navDrop) {
+  const linkElem = navDrop.querySelector('a');
+  const picElem = navDrop.querySelector('picture');
+  if (picElem) {
+    linkElem.textContent = '';
+    linkElem.appendChild(picElem);
+  }
+}
+
+function addLinkBadge(navDrop) {
+  const linkElem = navDrop.querySelector('.link-title');
+  const linkTitle = linkElem?.textContent;
+  if (linkTitle && linkTitle.includes(':')) {
+    const [actualTitle, badgeText] = linkTitle.split(':');
+    linkElem.textContent = actualTitle;
+    const badge = document.createElement('div');
+    badge.className = 'nav-badge';
+    badge.innerHTML = `<p class="nav-badge-text"><span>${badgeText}</span></p>`;
+    linkElem.appendChild(badge);
+  }
+}
+
 function wrapNavDrops(navSections, parentSelector, linkTextClass) {
   const navDrops = Array.from(navSections.querySelectorAll(parentSelector));
   navDrops.forEach((navDrop) => {
     if (Array.from(navDrop.querySelectorAll('ul')).length === 0) {
       navDrop.classList.add('sub-link-text');
       navDrop.setAttribute('tabindex', 0);
+      wrapPictueWithLink(navDrop);
       return;
     }
     const textContent = navDrop.firstChild?.nodeValue?.trim();
@@ -34,6 +57,7 @@ function wrapNavDrops(navSections, parentSelector, linkTextClass) {
     }
     navDrop.insertBefore(wrapperElement, navDrop.firstElementChild);
     wrapNavDrops(navDrop, 'li', 'sub-link-title');
+    addLinkBadge(navDrop);
   });
 }
 
