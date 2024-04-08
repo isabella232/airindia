@@ -1,0 +1,492 @@
+{
+    "code": "0",
+    "message": "Success",
+    "status": "SUCCESS",
+    "hasError": false,
+    "data": {
+        "fares": [
+            {
+                "departureDate": "2024-03-28",
+                "returnDate": "2024-04-01",
+                "totalPrice": {
+                    "base": "14252",
+                    "tax": "2344",
+                    "total": "16596",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.6",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-03-29",
+                "returnDate": "2024-04-02",
+                "totalPrice": {
+                    "base": "13567",
+                    "tax": "2310",
+                    "total": "15877",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-03-30",
+                "returnDate": "2024-04-03",
+                "totalPrice": {
+                    "base": "14400",
+                    "tax": "2351",
+                    "total": "16751",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-03-31",
+                "returnDate": "2024-04-04",
+                "totalPrice": {
+                    "base": "16565",
+                    "tax": "2638",
+                    "total": "19203",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "19.2",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-01",
+                "returnDate": "2024-04-05",
+                "totalPrice": {
+                    "base": "25852",
+                    "tax": "2924",
+                    "total": "28776",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "28.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-02",
+                "returnDate": "2024-04-06",
+                "totalPrice": {
+                    "base": "17328",
+                    "tax": "2498",
+                    "total": "19826",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "19.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-03",
+                "returnDate": "2024-04-07",
+                "totalPrice": {
+                    "base": "15456",
+                    "tax": "2583",
+                    "total": "18039",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "18",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-04",
+                "returnDate": "2024-04-08",
+                "totalPrice": {
+                    "base": "13237",
+                    "tax": "2472",
+                    "total": "15709",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.7",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-05",
+                "returnDate": "2024-04-09",
+                "totalPrice": {
+                    "base": "13152",
+                    "tax": "2289",
+                    "total": "15441",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.4",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-06",
+                "returnDate": "2024-04-10",
+                "totalPrice": {
+                    "base": "13576",
+                    "tax": "2310",
+                    "total": "15886",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-07",
+                "returnDate": "2024-04-11",
+                "totalPrice": {
+                    "base": "13322",
+                    "tax": "2476",
+                    "total": "15798",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-08",
+                "returnDate": "2024-04-12",
+                "totalPrice": {
+                    "base": "16495",
+                    "tax": "2456",
+                    "total": "18951",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "19",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-09",
+                "returnDate": "2024-04-13",
+                "totalPrice": {
+                    "base": "18781",
+                    "tax": "2570",
+                    "total": "21351",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "21.4",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-10",
+                "returnDate": "2024-04-14",
+                "totalPrice": {
+                    "base": "12070",
+                    "tax": "2413",
+                    "total": "14483",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "14.5",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-11",
+                "returnDate": "2024-04-15",
+                "totalPrice": {
+                    "base": "13922",
+                    "tax": "2506",
+                    "total": "16428",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.4",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-12",
+                "returnDate": "2024-04-16",
+                "totalPrice": {
+                    "base": "12733",
+                    "tax": "2268",
+                    "total": "15001",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-13",
+                "returnDate": "2024-04-17",
+                "totalPrice": {
+                    "base": "14352",
+                    "tax": "2349",
+                    "total": "16701",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.7",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-14",
+                "returnDate": "2024-04-18",
+                "totalPrice": {
+                    "base": "14522",
+                    "tax": "2536",
+                    "total": "17058",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "17.1",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-15",
+                "returnDate": "2024-04-19",
+                "totalPrice": {
+                    "base": "15604",
+                    "tax": "2412",
+                    "total": "18016",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "18",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-16",
+                "returnDate": "2024-04-20",
+                "totalPrice": {
+                    "base": "14776",
+                    "tax": "2370",
+                    "total": "17146",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "17.1",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-17",
+                "returnDate": "2024-04-21",
+                "totalPrice": {
+                    "base": "12494",
+                    "tax": "2435",
+                    "total": "14929",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "14.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-18",
+                "returnDate": "2024-04-22",
+                "totalPrice": {
+                    "base": "13237",
+                    "tax": "2472",
+                    "total": "15709",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.7",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-19",
+                "returnDate": "2024-04-23",
+                "totalPrice": {
+                    "base": "13667",
+                    "tax": "2315",
+                    "total": "15982",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-20",
+                "returnDate": "2024-04-24",
+                "totalPrice": {
+                    "base": "13667",
+                    "tax": "2315",
+                    "total": "15982",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-21",
+                "returnDate": "2024-04-25",
+                "totalPrice": {
+                    "base": "13322",
+                    "tax": "2476",
+                    "total": "15798",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-22",
+                "returnDate": "2024-04-26",
+                "totalPrice": {
+                    "base": "14500",
+                    "tax": "2356",
+                    "total": "16856",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-23",
+                "returnDate": "2024-04-27",
+                "totalPrice": {
+                    "base": "14352",
+                    "tax": "2349",
+                    "total": "16701",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.7",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-24",
+                "returnDate": "2024-04-28",
+                "totalPrice": {
+                    "base": "11470",
+                    "tax": "2383",
+                    "total": "13853",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "13.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-25",
+                "returnDate": "2024-04-29",
+                "totalPrice": {
+                    "base": "12722",
+                    "tax": "2446",
+                    "total": "15168",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.2",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-26",
+                "returnDate": "2024-04-30",
+                "totalPrice": {
+                    "base": "12733",
+                    "tax": "2268",
+                    "total": "15001",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-27",
+                "returnDate": "2024-05-01",
+                "totalPrice": {
+                    "base": "13567",
+                    "tax": "2310",
+                    "total": "15877",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-28",
+                "returnDate": "2024-05-02",
+                "totalPrice": {
+                    "base": "13476",
+                    "tax": "2305",
+                    "total": "15781",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.8",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-29",
+                "returnDate": "2024-05-03",
+                "totalPrice": {
+                    "base": "13567",
+                    "tax": "2310",
+                    "total": "15877",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "15.9",
+                        "unit": "K"
+                    }
+                }
+            },
+            {
+                "departureDate": "2024-04-30",
+                "returnDate": "2024-05-04",
+                "totalPrice": {
+                    "base": "14252",
+                    "tax": "2344",
+                    "total": "16596",
+                    "currency": "INR",
+                    "priceLabel": {
+                        "value": "16.6",
+                        "unit": "K"
+                    }
+                }
+            }
+        ],
+        "origin": {
+            "airportCode": "DEL"
+        },
+        "destination": {
+            "airportCode": "BLR"
+        }
+    }
+}

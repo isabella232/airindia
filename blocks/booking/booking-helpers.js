@@ -5,7 +5,7 @@ function initServiceWorker() {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then(async (registration) => {
         await fetchPlaceholders();
-        console.log('Service Worker registered with scope:', registration.scope);
+        // console.log('Service Worker registered with scope:', registration.scope);
         if (registration.active) {
           registration.active
             .postMessage(window.placeholders);

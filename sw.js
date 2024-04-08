@@ -38,14 +38,14 @@ async function fetchMockPlaceholders(key) {
   try {
     // Parse and return the JSON data
     const mockData = placeholders[key];
-    console.log('fetchMockPlaceholders: Mock data=>', mockData);
+    // console.log('fetchMockPlaceholders: Mock data=>', mockData);
 
     return new Response(mockData, {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('[sw.js] fetchMockPlaceholders: Error fetching mock data =>', error);
+    // console.error('[sw.js] fetchMockPlaceholders: Error fetching mock data =>', error);
     // Return an error response if fetching fails
     return new Response(null, { status: 500, statusText: 'Internal Server Error' });
   }
@@ -63,14 +63,14 @@ async function fetchMockData(key) {
 
     // Parse and return the JSON data
     const mockData = await response.json();
-    console.log('[sw.js] fetchMockData: Mock data =>', mockData);
+    // console.log('[sw.js] fetchMockData: Mock data =>', mockData);
 
     return new Response(JSON.stringify(mockData), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error(`[sw.js] fetchMockData: Error fetching mock data of url:${path} =>`, error);
+    // console.error(`[sw.js] fetchMockData: Error fetching mock data of url:${path} =>`, error);
     // Return an error response if fetching fails
     return new Response(null, { status: 500, statusText: 'Internal Server Error' });
   }
@@ -79,16 +79,16 @@ async function fetchMockData(key) {
 // Install and activate the service worker
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting());
-  console.log('[sw.js] install: Service Worker installed');
+  // console.log('[sw.js] install: Service Worker installed');
 });
 
 self.addEventListener('message', (event) => {
   placeholders = event.data?.default;
-  console.log('[sw.js] message: Placeholders received=>', placeholders);
+  // console.log('[sw.js] message: Placeholders received=>', placeholders);
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[sw.js] activate: Service Worker activated');
+  // console.log('[sw.js] activate: Service Worker activated');
   // Perform activation tasks if needed
   event.waitUntil(self.clients.claim());
 });
@@ -99,13 +99,13 @@ self.addEventListener('fetch', async (event) => {
   // Check if the request is an API request with a different port
   if (((request.url.includes('api') && !request.url.includes('cbot') && !request.url.includes('chrome-extension')) || request.url.includes('EnvironmentVariableServlet')) && hostURL.port !== '4502') {
     const paths = request.url.split('/');
-    console.log('[sw.js] fetch: API request and not from the port 4502 =>', request.url);
+    // console.log('[sw.js] fetch: API request and not from the port 4502 =>', request.url);
     if (tokens.includes(paths[paths.length - 1])) {
-      console.log('[sw.js] fetch: Request is for placeholders =>', request.url);
+      // console.log('[sw.js] fetch: Request is for placeholders =>', request.url);
       event.respondWith(fetchMockPlaceholders(toCamelCase(paths[paths.length - 1])));
       return;
     }
-    console.log('[sw.js] fetch: Request is for mock data =>', request.url);
+    // console.log('[sw.js] fetch: Request is for mock data =>', request.url);
     event.respondWith(fetchMockData(paths[paths.length - 1]));
   } else {
     // Continue with the regular fetch

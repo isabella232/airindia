@@ -12,7 +12,7 @@
 /* header and nav layout */
 header {
   position: fixed;
-  z-index: 9999999999;
+  z-index: 999999;
 }
 
 header .nav-wrapper {

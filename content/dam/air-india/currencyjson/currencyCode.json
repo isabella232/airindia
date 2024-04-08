@@ -1,0 +1,612 @@
+[
+    {
+        "name": "American Samoa",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Andorra",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Anguilla",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Antigua and Barbuda",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Argentina",
+        "code": "ARS",
+        "symbol": "$"
+    },
+    {
+        "name": "Aruba",
+        "code": "AWG",
+        "symbol": "ƒ"
+    },
+    {
+        "name": "Australia",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Austria",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Bahamas",
+        "code": "BSD",
+        "symbol": "$"
+    },
+    {
+        "name": "Barbados",
+        "code": "BBD",
+        "symbol": "$"
+    },
+    {
+        "name": "Belgium",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Bermuda",
+        "code": "BMD",
+        "symbol": "$"
+    },
+    {
+        "name": "Botswana",
+        "code": "BWP",
+        "symbol": "P"
+    },
+    {
+        "name": "British Indian Ocean Territory",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "British Virgin Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Brunei",
+        "code": "BND",
+        "symbol": "$"
+    },
+    {
+        "name": "Cambodia",
+        "code": "KHR",
+        "symbol": "៛"
+    },
+    {
+        "name": "Canada",
+        "code": "CAD",
+        "symbol": "$"
+    },
+    {
+        "name": "Cayman Islands",
+        "code": "KYD",
+        "symbol": "$"
+    },
+    {
+        "name": "China",
+        "code": "CNY",
+        "symbol": "¥"
+    },
+    {
+        "name": "Christmas Island",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Cocos Islands",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Colombia",
+        "code": "COP",
+        "symbol": "$"
+    },
+    {
+        "name": "Cook Islands",
+        "code": "NZD",
+        "symbol": "$"
+    },
+    {
+        "name": "Costa Rica",
+        "code": "CRC",
+        "symbol": "₡"
+    },
+    {
+        "name": "Cuba",
+        "code": "CUP",
+        "symbol": "₱"
+    },
+    {
+        "name": "Dominica",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "East Timor",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Ecuador",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Egypt",
+        "code": "EGP",
+        "symbol": "£"
+    },
+    {
+        "name": "El Salvador",
+        "code": "SVC",
+        "symbol": "$"
+    },
+    {
+        "name": "Falkland Islands",
+        "code": "FKP",
+        "symbol": "£"
+    },
+    {
+        "name": "Fiji",
+        "code": "FJD",
+        "symbol": "$"
+    },
+    {
+        "name": "Finland",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "France",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "French Guiana",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "French Southern Territories",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Gambia",
+        "code": "GMD",
+        "symbol": "D"
+    },
+    {
+        "name": "Germany",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Ghana",
+        "code": "GHC",
+        "symbol": "¢"
+    },
+    {
+        "name": "Gibraltar",
+        "code": "GIP",
+        "symbol": "£"
+    },
+    {
+        "name": "Greece",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Grenada",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Guadeloupe",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Guam",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Guatemala",
+        "code": "GTQ",
+        "symbol": "Q"
+    },
+    {
+        "name": "Guyana",
+        "code": "GYD",
+        "symbol": "$"
+    },
+    {
+        "name": "Haiti",
+        "code": "HTG",
+        "symbol": "G"
+    },
+    {
+        "name": "Heard Island and McDonald Islands",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Honduras",
+        "code": "HNL",
+        "symbol": "L"
+    },
+    {
+        "name": "Hong Kong",
+        "code": "HKD",
+        "symbol": "$"
+    },
+    {
+        "name": "India",
+        "code": "INR",
+        "symbol": "₹"
+    },
+    {
+        "name": "Ireland",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Israel",
+        "code": "ILS",
+        "symbol": "₪"
+    },
+    {
+        "name": "Italy",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Jamaica",
+        "code": "JMD",
+        "symbol": "$"
+    },
+    {
+        "name": "Japan",
+        "code": "JPY",
+        "symbol": "¥"
+    },
+    {
+        "name": "Kiribati",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Laos",
+        "code": "LAK",
+        "symbol": "₭"
+    },
+    {
+        "name": "Lebanon",
+        "code": "LBP",
+        "symbol": "£"
+    },
+    {
+        "name": "Lesotho",
+        "code": "LSL",
+        "symbol": "L"
+    },
+    {
+        "name": "Liberia",
+        "code": "LRD",
+        "symbol": "$"
+    },
+    {
+        "name": "Luxembourg",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Marshall Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Martinique",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Mauritius",
+        "code": "MUR",
+        "symbol": "₨"
+    },
+    {
+        "name": "Mayotte",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Mexico",
+        "code": "MXN",
+        "symbol": "$"
+    },
+    {
+        "name": "Micronesia",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Monaco",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Mongolia",
+        "code": "MNT",
+        "symbol": "₮"
+    },
+    {
+        "name": "Montserrat",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Myanmar",
+        "code": "MMK",
+        "symbol": "K"
+    },
+    {
+        "name": "Namibia",
+        "code": "NAD",
+        "symbol": "$"
+    },
+    {
+        "name": "Nauru",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "Nepal",
+        "code": "NPR",
+        "symbol": "₨"
+    },
+    {
+        "name": "Netherlands",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Netherlands Antilles",
+        "code": "ANG",
+        "symbol": "ƒ"
+    },
+    {
+        "name": "New Zealand",
+        "code": "NZD",
+        "symbol": "$"
+    },
+    {
+        "name": "Nigeria",
+        "code": "NGN",
+        "symbol": "₦"
+    },
+    {
+        "name": "Niue",
+        "code": "NZD",
+        "symbol": "$"
+    },
+    {
+        "name": "Norfolk Island",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "North Korea",
+        "code": "KPW",
+        "symbol": "₩"
+    },
+    {
+        "name": "Northern Mariana Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Pakistan",
+        "code": "PKR",
+        "symbol": "₨"
+    },
+    {
+        "name": "Palau",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Palestinian Territory",
+        "code": "ILS",
+        "symbol": "₪"
+    },
+    {
+        "name": "Pitcairn",
+        "code": "NZD",
+        "symbol": "$"
+    },
+    {
+        "name": "Portugal",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Puerto Rico",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Qatar",
+        "code": "QAR",
+        "symbol": "﷼"
+    },
+    {
+        "name": "Reunion",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Saint Helena",
+        "code": "SHP",
+        "symbol": "£"
+    },
+    {
+        "name": "Saint Kitts and Nevis",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Saint Lucia",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "Saint Pierre and Miquelon",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Saint Vincent and the Grenadines",
+        "code": "XCD",
+        "symbol": "$"
+    },
+    {
+        "name": "San Marino",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Seychelles",
+        "code": "SCR",
+        "symbol": "₨"
+    },
+    {
+        "name": "Singapore",
+        "code": "SGD",
+        "symbol": "$"
+    },
+    {
+        "name": "Slovenia",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Solomon Islands",
+        "code": "SBD",
+        "symbol": "$"
+    },
+    {
+        "name": "Somalia",
+        "code": "SOS",
+        "symbol": "S"
+    },
+    {
+        "name": "South Africa",
+        "code": "ZAR",
+        "symbol": "R"
+    },
+    {
+        "name": "South Georgia and the South Sandwich Islands",
+        "code": "GBP",
+        "symbol": "£"
+    },
+    {
+        "name": "South Korea",
+        "code": "KRW",
+        "symbol": "₩"
+    },
+    {
+        "name": "Spain",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Sri Lanka",
+        "code": "LKR",
+        "symbol": "₨"
+    },
+    {
+        "name": "Suriname",
+        "code": "SRD",
+        "symbol": "$"
+    },
+    {
+        "name": "Syria",
+        "code": "SYP",
+        "symbol": "£"
+    },
+    {
+        "name": "Thailand",
+        "code": "THB",
+        "symbol": "฿"
+    },
+    {
+        "name": "Tokelau",
+        "code": "NZD",
+        "symbol": "$"
+    },
+    {
+        "name": "Turkmenistan",
+        "code": "TMM",
+        "symbol": "m"
+    },
+    {
+        "name": "Turks and Caicos Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Tuvalu",
+        "code": "AUD",
+        "symbol": "$"
+    },
+    {
+        "name": "U.S. Virgin Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Ukraine",
+        "code": "UAH",
+        "symbol": "₴"
+    },
+    {
+        "name": "United Kingdom",
+        "code": "GBP",
+        "symbol": "£"
+    },
+    {
+        "name": "United States",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "United States Minor Outlying Islands",
+        "code": "USD",
+        "symbol": "$"
+    },
+    {
+        "name": "Vatican",
+        "code": "EUR",
+        "symbol": "€"
+    },
+    {
+        "name": "Vietnam",
+        "code": "VND",
+        "symbol": "₫"
+    }
+  ]

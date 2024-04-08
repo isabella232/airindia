@@ -1,4 +1,8 @@
 #searchflightangularselecter .booking-form{padding:24px !important}
+#searchflightangularselecter .myAccbtn{background:#da0e29 !important;color:#fff}
+#searchflightangularselecter .myAccbtn:hover{background:#b61032 !important;color:#fff}
+#searchflightangularselecter .myAccbtn:active{background-color:#790b27 !important;border:1px solid #790b27 !important}
+#searchflightangularselecter .myAccbtn:focus-visible{background-color:#da0e29 !important;outline:4px solid #fecbd8 !important;border:#da0e29 !important}
 #searchflightangularselecter .search-flight label.mat-radio-label{color:#1c1213 !important;font-family:AirIndia Variable !important}
 #searchflightangularselecter .search-flight .mat-radio-label span.mat-radio-container{color:#1c1213 !important;font-family:AirIndia Variable !important}
 #searchflightangularselecter ngb-datepicker-navigation-select>.form-select{border-radius:0}
@@ -21,7 +25,13 @@
 .search-flight input:focus~label,.search-flight input:not(:placeholder-shown)~label{transform:translateY(-30px) !important;background:#fff;padding-left:5px !important;padding-right:5px !important}
 @media only screen and (min-width:992px){.search-flight .book input:focus,.search-flight .book input:not(:placeholder-shown){padding-top:0 !important}
 }
-.search-flight .date-picker .form-label,.search-flight app-add-passenger .form-label,.search-flight app-class-type .label,.search-flight app-concession-type .label{position:absolute;transform:translateY(-30px) !important;background:#fff;display:inline-flex !important;padding-left:5px !important;padding-right:5px !important}
+.search-flight .date-picker .form-label,.search-flight app-add-passenger .form-label,.search-flight app-class-type .label{position:absolute;transform:translateY(-30px) !important;background:#fff;display:inline-flex !important;padding-left:5px !important;padding-right:5px !important}
+<<<<<<<< HEAD:etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css
+.search-flight .date-picker .return-date-label{margin-top:1px}
+.search-flight app-class-type .label{padding-top:3px}
+========
+>>>>>>>> 63-booking-widget-changes:etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-7bcf2200d80a8abaf40de594a5114172-lc.min.css
+.search-flight app-concession-type .label{position:absolute;transform:translateY(-24px) !important;background:#fff;display:inline-flex !important;padding-left:5px !important;padding-right:5px !important}
 .search-flight .date-picker .add-return-label{position:relative;transform:unset !important}
 .search-flight .date-picker .row{display:flex;align-items:center;height:100%}
 .search-flight app-add-passenger,.search-flight app-class-type,.search-flight app-concession-type{display:flex;align-items:center}
@@ -67,3 +77,12 @@
 #searchflightangularselecter .booking-form app-date-selection-modal button.btn{height:unset;padding:10px 0 !important}
 }
 #searchflightangularselecter .search-flight .btn-outline-primary:active,#searchflightangularselecter .search-flight .btn-outline-primary:focus-visible{background-color:transparent;color:#000}
+#searchflightangularselecter .booking-flight-btn{height:48px !important}
+.dropdown-menu.show .ngb-dp-month:first-child .ngb-dp-week{padding-left:0}
+.ngb-dp-month+.ngb-dp-month .ngb-dp-month-name,.ngb-dp-month+.ngb-dp-month .ngb-dp-week{padding-left:0}
+.dropdown-menu.show .ngb-dp-header .ngb-dp-navigation-select .form-select:last-child{border-left:0}
+.dropdown-menu.show .ngb-dp-content .ngb-dp-month:first-child{margin-right:16px}
+.dropdown-menu.show .ngb-dp-content .ngb-dp-month:last-child{padding-left:16px}
+.dropdown-menu.show ngb-datepicker-navigation-select>.form-select{height:40px;width:230px}
+.dropdown-menu.show .ngb-dp-header .ngb-dp-navigation-select .form-select:first-child{width:227px}
+.dropdown-menu.show .ngb-dp-header ngb-datepicker-navigation .ngb-dp-arrow button{height:100%}

@@ -142,14 +142,14 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-function isEDSHost(url) {
-  return (url.includes('.hlx.page') || url.includes('.hlx.live') || url.includes('localhost'));
+function isEDSBranch(url) {
+  return (((url.includes('.hlx.page') || url.includes('.hlx.live')) && !url.includes('main--airindia')) || url.includes('localhost'));
 }
 
 async function loadPage() {
   // Initialize service worker
   // TODO: remove once the API is ready
-  if (isEDSHost(window.location.hostname)) {
+  if (isEDSBranch(window.location.hostname)) {
     initServiceWorker();
   }
 
