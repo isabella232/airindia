@@ -57,6 +57,22 @@ footer .footer {
 
 .footer-middle-item h6{
   margin-top: 0;
+  padding: 20px 0;
+}
+
+.footer-top-item ul{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.footer-bottom, .footer-end{
+  display: flex;
+}
+
+.footer-bottom img {
+  width: 100%;
+  height: auto;
 }
 
 footer .footer p {
@@ -75,6 +91,16 @@ footer .footer .footer-top-item p a{
   text-decoration: underline;
 }
 
+footer .footer .footer-top-item p img{
+  height: 43px;
+  width: 100%;
+  padding-right: 6px;
+}
+
+footer .footer .footer-top-item p:nth-last-of-type(-n+2){
+  display: inline-flex;
+}
+
 .footer-end .default-content-wrapper{
   display: flex;
   justify-content: center;
@@ -84,12 +110,6 @@ footer .footer .footer-top-item p a{
   font-size: var(--paragraph-font-size-s);
   text-align: center;
   margin: 12px;
-}
-
-.footer-top-item ul{
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
 }
 
 .footer-top-item{
@@ -116,6 +136,19 @@ footer .footer .footer-top-item p a{
   margin: 12px;
 }
 
+.footer-middle-item:last-child ul {
+  display: flex;
+  padding-top: 5px;
+}
+
+.footer-middle-item:last-child ul li {
+  flex: 1;
+}
+
+.footer-middle-item:last-child ul li img {
+  width: 35px;
+}
+
 .footer-bottom .default-content-wrapper{
   display: flex;
   flex-direction: column-reverse;
@@ -127,15 +160,6 @@ footer .footer .footer-top-item p a{
 
 .footer-end {
   color: var(--ai-page-description-color);
-}
-
-.footer-bottom, .footer-end{
-  display: flex;
-}
-
-.footer-bottom img {
-  width: 100%;
-  height: auto;
 }
 
 .footer-top-item .active::after {
@@ -170,16 +194,6 @@ footer .footer .footer-top-item p a{
     content: none;
   }
 
-  footer .footer .footer-top-item p:nth-child(3){
-    display: flex;
-  }
-
-  footer .footer .footer-top-item p img{
-    height: 43px;
-    width: 100%;
-    padding-right: 10px;
-  }
-
   .footer-bottom .default-content-wrapper{
     display: flex;
     justify-content: space-between;
@@ -189,6 +203,10 @@ footer .footer .footer-top-item p a{
 
   .footer .separator {
     margin: 0 15px;
+  }
+  
+  .footer-middle-item h6{
+    padding: 0;
   }
 
 }
