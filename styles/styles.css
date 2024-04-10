@@ -132,6 +132,7 @@
 html {
   /* 1rem = 16px */
   font-size: 16px;
+  margin: 0 auto;
 }
 
 body {
