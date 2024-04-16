@@ -4,6 +4,7 @@ import { sampleRUM, loadScript } from './aem.js';
 import { getEnvType } from './scripts.js';
 import loadExternalComponent from './utils/initializer.js';
 import { initBooking } from '../blocks/booking/booking.js';
+import { pushPageLoadedAnalytics } from './analytics.js';
 
 // Initialize the booking block if present on the page
 if (document.querySelector('.booking')) {
@@ -49,6 +50,7 @@ async function loadCookieConsentManager() {
 
 await loadCookieConsentManager();
 await loadAdobeLaunch();
+pushPageLoadedAnalytics();
 await loadGTM();
 
 // Load chatbot script
