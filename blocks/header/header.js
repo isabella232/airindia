@@ -1,6 +1,8 @@
 import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { getUserInfo, getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils/headerUtils.js';
+import { pushPageLoadedAnalytics } from '../../scripts/analytics.js';
+import { EVENTS } from '../../scripts/utils/constants.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1024px)');
@@ -352,6 +354,16 @@ function globalEscapeHandler(e) {
   hideProfileInfo();
 }
 
+function addAdobeLaunchLoadedHandler() {
+  window.addEventListener(EVENTS.ADOBE_LAUNCH_LOADED, () => {
+    const dataObj = {
+      siteSection: 'AEM Site Section',
+      pageType: 'AEM Page',
+    };
+    pushPageLoadedAnalytics(dataObj);
+  });
+}
+
 function addGlobalEventHandlers() {
   addScrollHandler();
   // enable menu collapse on escape keypress
@@ -361,6 +373,7 @@ function addGlobalEventHandlers() {
   } else {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
+  addAdobeLaunchLoadedHandler();
 }
 
 /**

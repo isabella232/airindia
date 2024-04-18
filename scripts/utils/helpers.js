@@ -1,5 +1,9 @@
 import { fetchPlaceholders } from '../aem.js';
 
+export function capitalize(str) {
+  return `${str?.[0].toUpperCase()}${str?.slice(1)}`;
+}
+
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })

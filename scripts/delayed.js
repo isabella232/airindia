@@ -4,7 +4,7 @@ import { sampleRUM, loadScript } from './aem.js';
 import { getEnvType } from './scripts.js';
 import loadExternalComponent from './utils/initializer.js';
 import { initBooking } from '../blocks/booking/booking.js';
-import { pushPageLoadedAnalytics } from './analytics.js';
+import { EVENTS } from './utils/constants.js';
 
 // Initialize the booking block if present on the page
 if (document.querySelector('.booking')) {
@@ -30,6 +30,11 @@ async function loadGTM() {
   document.head.prepend(scriptTag);
 }
 
+function triggerAdobeLaunchLoadedEvent() {
+  const customEvent = new Event(EVENTS.ADOBE_LAUNCH_LOADED);
+  window.dispatchEvent(customEvent);
+}
+
 async function loadAdobeLaunch() {
   const adobeotmSrc = {
     dev: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js',
@@ -37,6 +42,7 @@ async function loadAdobeLaunch() {
     live: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-4f07f2129862.min.js',
   };
   await loadScript(adobeotmSrc[getEnvType()]);
+  triggerAdobeLaunchLoadedEvent();
 }
 
 async function loadCookieConsentManager() {
@@ -50,7 +56,6 @@ async function loadCookieConsentManager() {
 
 await loadCookieConsentManager();
 await loadAdobeLaunch();
-pushPageLoadedAnalytics();
 await loadGTM();
 
 // Load chatbot script
