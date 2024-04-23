@@ -1,5 +1,5 @@
 import { EVENTS } from './utils/constants.js';
-import { getPlaceholderDataFor } from './utils/headerUtils.js';
+import { getPlaceholderDataFor } from './utils/blockUtils.js';
 import { capitalize } from './utils/helpers.js';
 
 export function getQueryParameters(url) {

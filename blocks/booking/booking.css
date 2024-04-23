@@ -2719,7 +2719,8 @@ input.mat-input-element {
     --bs-grey: #a3a3a3;
     --bs-black: #000;
     --bs-font-xs: 11px;
-    --bs-font-small: 12px
+    --bs-font-small: 12px;
+    --bs-dark-grey: #70777B;
 }
 
 body,html {
@@ -2758,13 +2759,13 @@ body,html {
 }
 
 .booking-form .label,.booking-form label {
-    color: #8f959a;
+    color: var(--bs-dark-grey);
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .booking-form input {
-    border: 1px solid #8f959a;
+    border: 1px solid var(--bs-dark-grey);
     padding: 10px;
     width: 100%
 }
@@ -4597,8 +4598,6 @@ textarea.form-control-lg {
 
 .form-select {
     -moz-padding-start: calc(.75rem - 3px);
-    appearance: none;
-    appearance: none;
     appearance: none;
     background-color: #fff;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -10937,13 +10936,13 @@ textarea.form-control-lg {
 }
 
 .book-with-points .label,.book-with-points label {
-    color: #8f959a;
+    color: var(--bs-dark-grey);
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .book-with-points input {
-    border: 1px solid #8f959a;
+    border: 1px solid var(--bs-dark-grey);
     padding: 10px;
     width: 100%
 }
@@ -12310,7 +12309,7 @@ main .section.booking-container .booking-wrapper {
 
 
 @media screen and (min-width: 767px) {
-    main .section.booking-container .booking-wrapper { 
+    main .section.booking-container .booking-wrapper {
         padding: 0;
     }
 

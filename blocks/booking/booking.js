@@ -1,5 +1,7 @@
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
+import { getPlaceholderDataFor } from '../../scripts/utils/blockUtils.js';
+
 const urlParams = 'https://www.airindia.in';
 
 const configModelUrl = (window.location.hostname === urlParams) ? `${urlParams}/content/.EnvironmentVariableServlet.json` : '/blocks/booking/config.json';
@@ -13,6 +15,13 @@ let headerValueLOY = '';
 const envDetails = {};
 
 let container;
+
+function updateDateButtonAriaLabels() {
+  const dateButtons = document.querySelectorAll('.btn.bi.bi-calendar3');
+  dateButtons.forEach((dateButton) => {
+    dateButton.setAttribute('aria-label', getPlaceholderDataFor('bookingDateButtonAriaLabel'));
+  });
+}
 
 /**
  * updates the additional content for flight search
@@ -104,13 +113,14 @@ export async function initBooking() {
             });
 
             window.dispatchEvent(configset);
-
             // console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
+            // eslint-disable-next-line
             console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
+        // eslint-disable-next-line
         console.error(e);
       }
 
@@ -138,13 +148,16 @@ export async function initBooking() {
             window.dispatchEvent(configset);
           })
           .catch((err) => {
+            // eslint-disable-next-line
             console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
+        // eslint-disable-next-line
         console.error('[booking.js] [initBooking]', e);
       }
       return true;
     });
+  updateDateButtonAriaLabels();
 }
 
 /**
@@ -157,5 +170,6 @@ export default async function decorate(block) {
 
 /** dummy function to handle dependency */
 window.checkSignInForRefx = () => {
+  // eslint-disable-next-line
   console.log('[booking.js] [checkSignInForRefx]');
 };

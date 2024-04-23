@@ -2,7 +2,7 @@ import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 function createAccordion() {
-  const acc = document.querySelectorAll('.footer-top-item h6');
+  const acc = document.querySelectorAll('.footer-top-item h1');
   let i;
 
   for (i = 0; i < acc.length - 1; i += 1) {
@@ -44,13 +44,13 @@ function decorateFooter(block, selectorClass) {
   while (index < children.length) {
     const topItem = document.createElement('div');
     topItem.classList.add(`${selectorClass}-item`);
-    // Skip h6 if title not available
+    // Skip H1 if title not available
     if (children[index].innerText !== '_blank') { topItem.appendChild(children[index]); }
     index += 1;
 
     while (index < children.length) {
-      if (children[index].tagName === 'H6') {
-        if (!children[index + 1] || (children[index - 1].tagName === 'H6' && children[index + 1].tagName !== 'UL')) {
+      if (children[index].tagName === 'H1') {
+        if (!children[index + 1] || (children[index - 1].tagName === 'H1' && children[index + 1].tagName !== 'UL')) {
           topItem.appendChild(children[index]);
         } else {
           break;

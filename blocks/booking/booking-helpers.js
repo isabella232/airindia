@@ -12,6 +12,7 @@ function initServiceWorker() {
         }
       })
       .catch((error) => {
+        // eslint-disable-next-line
         console.error('Service Worker registration failed:', error);
       });
   }

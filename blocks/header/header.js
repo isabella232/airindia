@@ -1,6 +1,11 @@
 import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getUserInfo, getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils/headerUtils.js';
+import {
+  getUserInfo,
+  getPlaceholderDataFor,
+  isLoggedIn,
+  addDefaultHrefToElementAnchorTags,
+} from '../../scripts/utils/blockUtils.js';
 import { pushPageLoadedAnalytics } from '../../scripts/analytics.js';
 import { EVENTS } from '../../scripts/utils/constants.js';
 
@@ -85,7 +90,7 @@ function createSearchBox(label = 'Search') {
   <div class="header-nav-search-box" id="header-nav-search-box">
     <span class="header-nav-search-box-close">&times;</span>
     <label for="search-box" class="header-nav-search-box-label" role="heading" aria-level="2">${label}</label>
-    <input type="text" id="search-box" name="search-box" aria-labelledby="search-box">
+    <input type="text" id="search-box" name="search-box" aria-label="Search">
     <a class="search-icon">
       <img data-icon-name="search" src="/icons/search-red.svg" class="search-icon" alt="Search" />
     </a> 
@@ -209,7 +214,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
       if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('role', 'button');
         drop.setAttribute('tabindex', 0);
         drop.addEventListener('focus', focusNavSection);
       }
@@ -375,6 +379,33 @@ function addGlobalEventHandlers() {
   }
   addAdobeLaunchLoadedHandler();
 }
+function addAltTextToHeaderIcons() {
+  // Add alt attribute to brand icon
+  const airIndiaIcon = document.querySelector('img[data-icon-name="ai-logo-white"]');
+  if (airIndiaIcon) {
+    airIndiaIcon.setAttribute('alt', getPlaceholderDataFor('airIndiaAltText'));
+  }
+  // Add alt attribute to search icon
+  const searchIcon = document.querySelector('img[data-icon-name="search-light"]');
+  if (searchIcon) {
+    searchIcon.setAttribute('alt', getPlaceholderDataFor('searchAltText'));
+  }
+  // Add alt attribute to support icon
+  const supportIcon = document.querySelector('img[data-icon-name="support-light"]');
+  if (supportIcon) {
+    supportIcon.setAttribute('alt', getPlaceholderDataFor('supportAltText'));
+  }
+  // Add alt attribute to signin icon
+  const signinIcon = document.querySelector('img[data-icon-name="signin-light"]');
+  if (signinIcon) {
+    signinIcon.setAttribute('alt', getPlaceholderDataFor('signInAltText'));
+  }
+  // Add alt attribute to Profile icon
+  const profileIcon = document.querySelector('img[data-icon-name="profile"]');
+  if (profileIcon) {
+    profileIcon.setAttribute('alt', getPlaceholderDataFor('myProfileAltText'));
+  }
+}
 
 /**
  * decorates the header, mainly the nav
@@ -398,10 +429,6 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandImg = navBrand.querySelector('img');
-  if (brandImg) {
-    brandImg.setAttribute('alt', 'Air India');
-  }
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -457,4 +484,6 @@ export default async function decorate(block) {
   addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
+  addDefaultHrefToElementAnchorTags('nav');
+  addAltTextToHeaderIcons();
 }

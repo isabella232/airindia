@@ -86,6 +86,7 @@ export async function getMembership() {
 
     return await response.json();
   } catch (err) {
+    // eslint-disable-next-line
     console.error(err);
     throw err;
   }
@@ -126,4 +127,23 @@ export async function getUserInfo() {
     points: loyalty?.amount,
     club,
   };
+}
+
+/**
+ * add href attribute with default # value to Anchor tags with no href to improve accessibility
+ */
+export function addDefaultHrefToElementAnchorTags(elementId) {
+  const element = document.getElementById(elementId);
+  element.querySelectorAll('a').forEach((anchor) => {
+    if (!anchor.getAttribute('href')) {
+      anchor.setAttribute('href', '#');
+    }
+    // eslint-disable-next-line no-script-url
+    if (anchor.getAttribute('href') === 'javascript:void(0)') {
+      anchor.setAttribute('href', '#');
+      anchor.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+    }
+  });
 }
