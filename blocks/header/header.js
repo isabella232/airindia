@@ -21,7 +21,7 @@ function toggleAllNavSections(sections, expanded = false) {
 function wrapPictueWithLink(navDrop) {
   const linkElem = navDrop.querySelector('a');
   const picElem = navDrop.querySelector('picture');
-  if (picElem) {
+  if (picElem && linkElem) {
     linkElem.textContent = '';
     linkElem.appendChild(picElem);
   }
