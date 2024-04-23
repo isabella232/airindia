@@ -1,3 +1,4 @@
+// This is a test comment
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 import { getPlaceholderDataFor } from '../../scripts/utils/blockUtils.js';
