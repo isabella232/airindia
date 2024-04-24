@@ -104,7 +104,7 @@ function addclickEventToLinks() {
         clickName: (isImage ? e.target.getAttribute('alt') : link.textContent),
         clickComponentType: (link.localName === 'a' ? 'URL' : 'Button'),
         componentName: (isImage ? e.target.getAttribute('alt') : link.textContent),
-        componentID: (isImage ? e.target.getAttribute('alt') : (link.id || link.textContent)),
+        componentID: ((isImage ? e.target.getAttribute('alt') : (link.id || link.textContent))).trim().toLowerCase().replace(/\s/g, ''),
         clickLocation,
         ...(isImage && { clickIcon: e.target.getAttribute('alt') || link.textContent }),
         type: 'other',

@@ -7,6 +7,20 @@ const CMP_CONFIG = {
   searchFlightStyle: '/etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css',
 };
 
+export const SCRIPTS = {
+  wcmDataLayer: '/etc.clientlibs/core/wcm/components/commons/datalayer/v1/clientlibs/core.wcm.components.commons.datalayer.v1.lc-904d3c2f1e821ab45124d66de422b409-lc.min.js',
+  adobeotmSrc: {
+    dev: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js',
+    preview: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-ce0d5a5ddfb7-staging.min.js',
+    live: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-4f07f2129862.min.js',
+  },
+  gtmSrc: 'https://www.googletagmanager.com/gtag/js?id=UA-222518279-1',
+};
+
+export const HOST = {
+  origin: 'https://www.airindia.com',
+};
+
 export const EVENTS = {
   ADOBE_LAUNCH_LOADED: 'ADOBE_LAUNCH_LOADED',
 };
