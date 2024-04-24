@@ -183,7 +183,7 @@ h6 {
 
 main .section>div {
   background: var(--ai-body-bg-color);
-  padding: 24px;
+  padding: 5px 24px;
   margin: auto;
 }
 
@@ -192,6 +192,7 @@ main .section h3 {
   background: var(--ai-global-gray);
   color: var(--ai-page-heading-color);
   font-size: var(--heading-font-size-s);
+  padding: 10px;
 }
 
 h4 {
@@ -378,7 +379,7 @@ main .section.highlight {
 
 @media (min-width: 1024px) {
   main .section {
-    padding: 0 2rem 2rem;
+    padding: 2rem;
   }
 
   .section > div {
