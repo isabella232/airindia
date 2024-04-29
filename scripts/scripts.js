@@ -100,7 +100,8 @@ export function decorateLinkedPictures($main) {
 // Add _blank to anchor links if the href is external
 function decorateExternalLinks($main) {
   $main.querySelectorAll('a').forEach(($a) => {
-    if ($a.href && $a.href.startsWith('http') && !$a.href.startsWith(window.location.origin) && !$a.href.startsWith(HOST.origin)) {
+    const thisUrl = new URL($a.href);
+    if ($a.href && $a.href.startsWith('http') && !$a.href.startsWith(window.location.origin) && !thisUrl?.origin?.endsWith(HOST.domain)) {
       $a.rel = 'noopener noreferrer';
       $a.target = '_blank';
     }

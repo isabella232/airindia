@@ -19,6 +19,7 @@ export const SCRIPTS = {
 
 export const HOST = {
   origin: 'https://www.airindia.com',
+  domain: '.airindia.com',
 };
 
 export const EVENTS = {
