@@ -8,8 +8,13 @@ import { SCRIPTS, EVENTS } from './utils/constants.js';
 
 // Initialize the booking block if present on the page
 if (document.querySelector('.booking')) {
-  initBooking();
+  await initBooking();
 }
+
+// Auth scripts
+await loadScript('/scripts/auth/msal.js');
+await loadScript('/scripts/auth/authConfig.js');
+await loadScript('/scripts/auth/authRedirect.js');
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');

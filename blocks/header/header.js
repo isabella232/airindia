@@ -29,6 +29,7 @@ function wrapPictueWithLink(navDrop) {
   if (picElem && linkElem) {
     linkElem.textContent = '';
     linkElem.appendChild(picElem);
+    linkElem.title = picElem.querySelector('img')?.getAttribute('alt');
   }
 }
 
@@ -210,7 +211,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     document.querySelector('header .nav-wrapper')?.classList.remove('expanded');
   }
   // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
+  const navDrops = navSections?.querySelectorAll('.nav-drop') || [];
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
       if (!drop.hasAttribute('tabindex')) {
@@ -294,10 +295,26 @@ function toggleProfileInfo() {
   document.querySelector('.profile-wrapper')?.classList.toggle('show');
 }
 
+function attachSiginListener(parentElem) {
+  const links = [...parentElem.querySelectorAll('a')];
+  const signUpLinks = links.filter((link) => link.href?.endsWith('#signup'));
+  signUpLinks?.forEach((signUpLink) => {
+    signUpLink.classList.add('enrollnowlink');
+  });
+
+  parentElem.addEventListener('click', (e) => {
+    const aElem = e.target.closest('a');
+    if (aElem?.href?.endsWith?.('#signin')) {
+      e.preventDefault();
+      window.signIn();
+    }
+  });
+}
+
 function decorateNavTools(navSections) {
   const navTools = document.querySelector('.nav-tools');
   // navSections.insertBefore(navTools, navSections.firstChild);
-  const navToolLists = Array.from(navTools.querySelectorAll('ul>li')) || [];
+  const navToolLists = Array.from(navTools?.querySelectorAll('ul>li')) || [];
   navToolLists.forEach((list) => {
     if (list.querySelector('ul')) {
       list.addEventListener('mouseover', () => {
@@ -312,7 +329,6 @@ function decorateNavTools(navSections) {
   if (search) {
     search.addEventListener('click', headerSearchClickHandler.bind(null, search, navSections));
   }
-
   const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
   if (isLoggedIn() && paragraphs?.length >= 0) {
     paragraphs[paragraphs.length - 2]?.classList.add('hide');
@@ -368,6 +384,18 @@ function addAdobeLaunchLoadedHandler() {
   });
 }
 
+function addSigninEventHandlers() {
+  const signInIcons = [...document.querySelectorAll('.icon-signin-light, .icon-signin')];
+  signInIcons?.forEach((icon) => {
+    icon.addEventListener('click', (e) => {
+      const clickedIcon = e.target.closest('.icon-signin-light') || e.target.closest('.icon-signin');
+      if (clickedIcon) {
+        window.signIn();
+      }
+    });
+  });
+}
+
 function addGlobalEventHandlers() {
   addScrollHandler();
   // enable menu collapse on escape keypress
@@ -377,6 +405,7 @@ function addGlobalEventHandlers() {
   } else {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
+  addSigninEventHandlers();
   addAdobeLaunchLoadedHandler();
 }
 function addAltTextToHeaderIcons() {
@@ -420,7 +449,7 @@ export default async function decorate(block) {
   // decorate nav DOM
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  while (fragment?.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
@@ -429,7 +458,13 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
+
+  const brandImg = navBrand?.querySelector('img');
+  if (brandImg) {
+    brandImg.setAttribute('alt', 'Air India');
+  }
+  const brandLink = navBrand?.querySelector('.button');
+
   if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
@@ -482,6 +517,7 @@ export default async function decorate(block) {
 
   decorateNavTools(navSections);
   addGlobalEventHandlers();
+  attachSiginListener(block);
   // add skip to main link
   addSkipToMain();
   addDefaultHrefToElementAnchorTags('nav');
