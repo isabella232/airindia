@@ -300,11 +300,13 @@ function attachSiginListener(parentElem) {
   const signUpLinks = links.filter((link) => link.href?.endsWith('#signup'));
   signUpLinks?.forEach((signUpLink) => {
     signUpLink.classList.add('enrollnowlink');
+    signUpLink.removeAttribute('target');
   });
 
   parentElem.addEventListener('click', (e) => {
     const aElem = e.target.closest('a');
     if (aElem?.href?.endsWith?.('#signin')) {
+      aElem?.removeAttribute('target');
       e.preventDefault();
       window.signIn();
     }
