@@ -101,7 +101,11 @@ export function decorateLinkedPictures($main) {
 function decorateExternalLinks($main) {
   $main.querySelectorAll('a').forEach(($a) => {
     const thisUrl = new URL($a.href);
-    if ($a.href && $a.href.startsWith('http') && !$a.href.startsWith(window.location.origin) && !thisUrl?.origin?.endsWith(HOST.domain)) {
+    if ($a.href
+      && $a.href.startsWith('http')
+      && !$a.href.startsWith(window.location.origin)
+      && !thisUrl?.origin?.endsWith(HOST.domain)
+      && (thisUrl.hash === '#signin' || thisUrl.hash === '#signup')) {
       $a.rel = 'noopener noreferrer';
       $a.target = '_blank';
     }
