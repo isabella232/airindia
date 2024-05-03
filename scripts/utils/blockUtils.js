@@ -1,4 +1,6 @@
 /* eslint-disable */
+let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
 function _utf8_encode(r) {
   r = r.replace(/\r\n/g, "\n");
   let e = "";
@@ -12,70 +14,55 @@ function _utf8_encode(r) {
   return e
 }
 
-function _utf8_decode(e) {
-  let a = '';
-  let t = 0;
-  let n = 0;
-  let i = 0;
-  for (c3 = 0; t < e.length;) {
-    (n = e.charCodeAt(t)),
-    n < 128
-      ? ((a += String.fromCharCode(n)), t++)
-      : n > 191 && n < 224
-        ? ((i = e.charCodeAt(t + 1)),
-        (a += String.fromCharCode(((31 & n) << 6) | (63 & i))),
-        (t += 2))
-        : ((i = e.charCodeAt(t + 1)),
-        (c3 = e.charCodeAt(t + 2)),
-        (a += String.fromCharCode(
-          ((15 & n) << 12) | ((63 & i) << 6) | (63 & c3),
-        )),
-        (t += 3));
-  }
-  return a;
+function _utf8_decode(r) {
+  let e = ""
+    , t = 0
+    , o = 0
+    , n = 0;
+  for (; t < r.length; )
+      o = r.charCodeAt(t),
+      o < 128 ? (e += String.fromCharCode(o),
+      t++) : o > 191 && o < 224 ? (n = r.charCodeAt(t + 1),
+      e += String.fromCharCode((31 & o) << 6 | 63 & n),
+      t += 2) : (n = r.charCodeAt(t + 1),
+      c3 = r.charCodeAt(t + 2),
+      e += String.fromCharCode((15 & o) << 12 | (63 & n) << 6 | 63 & c3),
+      t += 3);
+  return e
 }
 
-let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 window.encode = (r) => {
-  let e, t, o, n, a, d, h, C = "", c = 0;
-  for (r = _utf8_encode(r); c < r.length; )
-      e = r.charCodeAt(c++),
-      t = r.charCodeAt(c++),
-      o = r.charCodeAt(c++),
-      n = e >> 2,
-      a = (3 & e) << 4 | t >> 4,
-      d = (15 & t) << 2 | o >> 6,
-      h = 63 & o,
-      isNaN(t) ? d = h = 64 : isNaN(o) && (h = 64),
-      C = C + _keyStr.charAt(n) + _keyStr.charAt(a) + _keyStr.charAt(d) + _keyStr.charAt(h);
-  return C
+    let e, t, o, n, a, d, h, C = "", c = 0;
+    for (r = _utf8_encode(r); c < r.length; )
+        e = r.charCodeAt(c++),
+        t = r.charCodeAt(c++),
+        o = r.charCodeAt(c++),
+        n = e >> 2,
+        a = (3 & e) << 4 | t >> 4,
+        d = (15 & t) << 2 | o >> 6,
+        h = 63 & o,
+        isNaN(t) ? d = h = 64 : isNaN(o) && (h = 64),
+        C = C + _keyStr.charAt(n) + _keyStr.charAt(a) + _keyStr.charAt(d) + _keyStr.charAt(h);
+    return C
 }
 
-window.decode = (e) => {
-  let a;
-  let t;
-  let n;
-  let i;
-  let r;
-  let o;
-  let c;
-  const d = _keyStr;
-  let l = '';
-  let m = 0;
-  for (e = e.replace(/[^A-Za-z0-9\+\/\=]/g, ''); m < e.length;) {
-    (i = d.indexOf(e.charAt(m++))),
-    (r = d.indexOf(e.charAt(m++))),
-    (o = d.indexOf(e.charAt(m++))),
-    (c = d.indexOf(e.charAt(m++))),
-    (a = (i << 2) | (r >> 4)),
-    (t = ((15 & r) << 4) | (o >> 2)),
-    (n = ((3 & o) << 6) | c),
-    (l += String.fromCharCode(a)),
-    o != 64 && (l += String.fromCharCode(t)),
-    c != 64 && (l += String.fromCharCode(n));
-  }
-  return (l = _utf8_decode(l)), l;
+window.decode = (r) => {
+    let e, t, o, n, a, d, h, C = "", c = 0;
+    for (r = r.replace(/[^A-Za-z0-9\+\/\=]/g, ""); c < r.length; )
+        n = _keyStr.indexOf(r.charAt(c++)),
+        a = _keyStr.indexOf(r.charAt(c++)),
+        d = _keyStr.indexOf(r.charAt(c++)),
+        h = _keyStr.indexOf(r.charAt(c++)),
+        e = n << 2 | a >> 4,
+        t = (15 & a) << 4 | d >> 2,
+        o = (3 & d) << 6 | h,
+        C += String.fromCharCode(e),
+        64 != d && (C += String.fromCharCode(t)),
+        64 != h && (C += String.fromCharCode(o));
+    return C = _utf8_decode(C),
+    C
 }
+
 /* eslint-enable */
 
 export function getLang() {
