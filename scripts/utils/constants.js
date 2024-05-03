@@ -20,6 +20,8 @@ export const SCRIPTS = {
 export const HOST = {
   origin: 'https://www.airindia.com',
   domain: '.airindia.com',
+  edsSubDomain: 'https://ai-eds-test.airindia.com',
+  edsTestPage: 'https://ai-eds-test.airindia.com/in/en/book/special-offers/global-connectivity',
 };
 
 export const EVENTS = {

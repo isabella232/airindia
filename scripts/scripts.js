@@ -190,6 +190,11 @@ function isEDSBranch(url) {
   return (((url.includes('.hlx.page') || url.includes('.hlx.live')) && !url.includes('main--airindia')) || url.includes('localhost'));
 }
 
+export function isEdsTestSubdomain(urlStr) {
+  const url = new URL(urlStr);
+  return url?.origin === HOST.edsSubDomain;
+}
+
 async function loadPage() {
   // Initialize service worker
   // TODO: remove once the API is ready

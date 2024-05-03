@@ -1,3 +1,5 @@
+import { isEdsTestSubdomain } from "../scripts";
+import { HOST } from "../utils/constants";
 const envWiseLoginConfig = {
   prod: {
     tenant: 'login',
@@ -44,6 +46,10 @@ if (configEnvParam.environment === 'non-prod') {
 
 config.redirectUri = `${window.location.origin}/in/en/redirect.html`;
 // config.redirectUri = "http://localhost:4502/content/air-india/language-masters/en/redirect.html";
+
+if(isEdsTestSubdomain(location.href)) {
+  config.redirectUri = HOST.edsTestPage;
+}
 
 b2cPolicies = {
   names: {
