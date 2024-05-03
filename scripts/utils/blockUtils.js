@@ -1,4 +1,17 @@
 /* eslint-disable */
+function _utf8_encode(r) {
+  r = r.replace(/\r\n/g, "\n");
+  let e = "";
+  for (let t = 0; t < r.length; t++) {
+      let o = r.charCodeAt(t);
+      o < 128 ? e += String.fromCharCode(o) : o > 127 && o < 2048 ? (e += String.fromCharCode(o >> 6 | 192),
+      e += String.fromCharCode(63 & o | 128)) : (e += String.fromCharCode(o >> 12 | 224),
+      e += String.fromCharCode(o >> 6 & 63 | 128),
+      e += String.fromCharCode(63 & o | 128))
+  }
+  return e
+}
+
 function _utf8_decode(e) {
   let a = '';
   let t = 0;
