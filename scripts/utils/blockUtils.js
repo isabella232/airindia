@@ -21,7 +21,24 @@ function _utf8_decode(e) {
   }
   return a;
 }
-function decode(e) {
+
+let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+window.encode = (r) => {
+  let e, t, o, n, a, d, h, C = "", c = 0;
+  for (r = _utf8_encode(r); c < r.length; )
+      e = r.charCodeAt(c++),
+      t = r.charCodeAt(c++),
+      o = r.charCodeAt(c++),
+      n = e >> 2,
+      a = (3 & e) << 4 | t >> 4,
+      d = (15 & t) << 2 | o >> 6,
+      h = 63 & o,
+      isNaN(t) ? d = h = 64 : isNaN(o) && (h = 64),
+      C = C + _keyStr.charAt(n) + _keyStr.charAt(a) + _keyStr.charAt(d) + _keyStr.charAt(h);
+  return C
+}
+
+window.decode = (e) => {
   let a;
   let t;
   let n;
@@ -29,7 +46,7 @@ function decode(e) {
   let r;
   let o;
   let c;
-  const d = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+  const d = _keyStr;
   let l = '';
   let m = 0;
   for (e = e.replace(/[^A-Za-z0-9\+\/\=]/g, ''); m < e.length;) {
@@ -67,7 +84,7 @@ export function isLoggedIn() {
 export async function getMembership() {
   try {
     const membershipUrl = getPlaceholderDataFor('getmemberships');
-    const token = decode(window.sessionStorage.getItem('accessToken'));
+    const token = window.decode(window.sessionStorage.getItem('accessToken'));
     const subscriptionKey = getPlaceholderDataFor('ocpSubscriptionKey');
 
     const response = await fetch(membershipUrl, {
