@@ -2,6 +2,7 @@
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 import { getPlaceholderDataFor } from '../../scripts/utils/blockUtils.js';
+import { addDomainToLinks } from './booking-helpers.js';
 
 const urlParams = 'https://www.airindia.in';
 
@@ -159,6 +160,7 @@ export async function initBooking() {
       return true;
     });
   updateDateButtonAriaLabels();
+  addDomainToLinks(container);
 }
 
 /**
@@ -168,9 +170,3 @@ export async function initBooking() {
 export default async function decorate(block) {
   container = block;
 }
-
-/** dummy function to handle dependency */
-window.checkSignInForRefx = () => {
-  // eslint-disable-next-line
-  console.log('[booking.js] [checkSignInForRefx]');
-};
