@@ -1,5 +1,13 @@
-import { isEdsTestSubdomain } from "../scripts";
-import { HOST } from "../utils/constants";
+function isEdsTestSubdomain(urlStr) {
+  const url = new URL(urlStr);
+  return url?.origin === HOST.edsSubDomain;
+}
+
+const HOST = {
+  edsSubDomain: 'https://ai-eds-test.airindia.com',
+  edsTestPage: 'https://ai-eds-test.airindia.com/in/en/book/special-offers/global-connectivity',
+};
+
 const envWiseLoginConfig = {
   prod: {
     tenant: 'login',
