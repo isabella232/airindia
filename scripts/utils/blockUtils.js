@@ -1,3 +1,10 @@
+const AIEnvBaseUrl = {
+  DEV: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
+  QA: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
+  STAGE: 'https://api-loyalty-staging.airindia.com/',
+  PROD: 'https://api-loyalty.airindia.com/',
+};
+
 /* eslint-disable */
 let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
@@ -75,6 +82,26 @@ export function getPlaceholderDataFor(key) {
   return placeholdersData[key];
 }
 
+export async function getOcpKey() {
+  const keyVaultUrl = `${AIEnvBaseUrl.STAGE}kv-token/get-loy-token-key`;
+  const appName = 'LOY';
+  let OCPKey;
+  try {
+    const response = await fetch(keyVaultUrl, {
+      method: 'POST',
+      headers: {
+        Appname: appName,
+      },
+    });
+    if (response.ok && response.status === 200) {
+      OCPKey = (await response.json()).value;
+    }
+  } catch (err) {
+    OCPKey = '';
+  }
+  return OCPKey;
+}
+
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export function isLoggedIn() {
   return !!window.sessionStorage.getItem('accessToken');
@@ -85,7 +112,7 @@ export async function getAccountSummary() {
   try {
     const membershipUrl = getPlaceholderDataFor('getAccountSummary');
     const token = window.decode(window.sessionStorage.getItem('accessToken'));
-    const subscriptionKey = getPlaceholderDataFor('ocpSubscriptionKey');
+    const subscriptionKey = await getOcpKey();
 
     const response = await fetch(membershipUrl, {
       method: 'POST',
