@@ -1,67 +1,67 @@
 /* eslint-disable */
 let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-function _utf8_encode(r) {
+function _utf8_encode (r) {
   r = r.replace(/\r\n/g, "\n");
   let e = "";
   for (let t = 0; t < r.length; t++) {
-      let o = r.charCodeAt(t);
-      o < 128 ? e += String.fromCharCode(o) : o > 127 && o < 2048 ? (e += String.fromCharCode(o >> 6 | 192),
+    let o = r.charCodeAt(t);
+    o < 128 ? e += String.fromCharCode(o) : o > 127 && o < 2048 ? (e += String.fromCharCode(o >> 6 | 192),
       e += String.fromCharCode(63 & o | 128)) : (e += String.fromCharCode(o >> 12 | 224),
-      e += String.fromCharCode(o >> 6 & 63 | 128),
-      e += String.fromCharCode(63 & o | 128))
+        e += String.fromCharCode(o >> 6 & 63 | 128),
+        e += String.fromCharCode(63 & o | 128));
   }
-  return e
+  return e;
 }
 
-function _utf8_decode(r) {
+function _utf8_decode (r) {
   let e = ""
     , t = 0
     , o = 0
     , n = 0;
-  for (; t < r.length; )
-      o = r.charCodeAt(t),
+  for (; t < r.length;)
+    o = r.charCodeAt(t),
       o < 128 ? (e += String.fromCharCode(o),
-      t++) : o > 191 && o < 224 ? (n = r.charCodeAt(t + 1),
-      e += String.fromCharCode((31 & o) << 6 | 63 & n),
-      t += 2) : (n = r.charCodeAt(t + 1),
-      c3 = r.charCodeAt(t + 2),
-      e += String.fromCharCode((15 & o) << 12 | (63 & n) << 6 | 63 & c3),
-      t += 3);
-  return e
+        t++) : o > 191 && o < 224 ? (n = r.charCodeAt(t + 1),
+          e += String.fromCharCode((31 & o) << 6 | 63 & n),
+          t += 2) : (n = r.charCodeAt(t + 1),
+            c3 = r.charCodeAt(t + 2),
+            e += String.fromCharCode((15 & o) << 12 | (63 & n) << 6 | 63 & c3),
+            t += 3);
+  return e;
 }
 
 window.encode = (r) => {
-    let e, t, o, n, a, d, h, C = "", c = 0;
-    for (r = _utf8_encode(r); c < r.length; )
-        e = r.charCodeAt(c++),
-        t = r.charCodeAt(c++),
-        o = r.charCodeAt(c++),
-        n = e >> 2,
-        a = (3 & e) << 4 | t >> 4,
-        d = (15 & t) << 2 | o >> 6,
-        h = 63 & o,
-        isNaN(t) ? d = h = 64 : isNaN(o) && (h = 64),
-        C = C + _keyStr.charAt(n) + _keyStr.charAt(a) + _keyStr.charAt(d) + _keyStr.charAt(h);
-    return C
-}
+  let e, t, o, n, a, d, h, C = "", c = 0;
+  for (r = _utf8_encode(r); c < r.length;)
+    e = r.charCodeAt(c++),
+      t = r.charCodeAt(c++),
+      o = r.charCodeAt(c++),
+      n = e >> 2,
+      a = (3 & e) << 4 | t >> 4,
+      d = (15 & t) << 2 | o >> 6,
+      h = 63 & o,
+      isNaN(t) ? d = h = 64 : isNaN(o) && (h = 64),
+      C = C + _keyStr.charAt(n) + _keyStr.charAt(a) + _keyStr.charAt(d) + _keyStr.charAt(h);
+  return C;
+};
 
 window.decode = (r) => {
-    let e, t, o, n, a, d, h, C = "", c = 0;
-    for (r = r.replace(/[^A-Za-z0-9\+\/\=]/g, ""); c < r.length; )
-        n = _keyStr.indexOf(r.charAt(c++)),
-        a = _keyStr.indexOf(r.charAt(c++)),
-        d = _keyStr.indexOf(r.charAt(c++)),
-        h = _keyStr.indexOf(r.charAt(c++)),
-        e = n << 2 | a >> 4,
-        t = (15 & a) << 4 | d >> 2,
-        o = (3 & d) << 6 | h,
-        C += String.fromCharCode(e),
-        64 != d && (C += String.fromCharCode(t)),
-        64 != h && (C += String.fromCharCode(o));
-    return C = _utf8_decode(C),
-    C
-}
+  let e, t, o, n, a, d, h, C = "", c = 0;
+  for (r = r.replace(/[^A-Za-z0-9\+\/\=]/g, ""); c < r.length;)
+    n = _keyStr.indexOf(r.charAt(c++)),
+      a = _keyStr.indexOf(r.charAt(c++)),
+      d = _keyStr.indexOf(r.charAt(c++)),
+      h = _keyStr.indexOf(r.charAt(c++)),
+      e = n << 2 | a >> 4,
+      t = (15 & a) << 4 | d >> 2,
+      o = (3 & d) << 6 | h,
+      C += String.fromCharCode(e),
+      64 != d && (C += String.fromCharCode(t)),
+      64 != h && (C += String.fromCharCode(o));
+  return C = _utf8_decode(C),
+    C;
+};
 
 /* eslint-enable */
 
@@ -81,24 +81,27 @@ export function isLoggedIn() {
 }
 
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
-export async function getMembership() {
+export async function getAccountSummary() {
   try {
-    const membershipUrl = getPlaceholderDataFor('getmemberships');
+    const membershipUrl = getPlaceholderDataFor('getAccountSummary');
     const token = window.decode(window.sessionStorage.getItem('accessToken'));
     const subscriptionKey = getPlaceholderDataFor('ocpSubscriptionKey');
 
     const response = await fetch(membershipUrl, {
       method: 'POST',
       headers: {
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
         'Ocp-Apim-Subscription-Key': subscriptionKey,
-        'Content-Type': 'application/json',
+        'X-Request-Source': 'website',
       },
       body: JSON.stringify({}),
     });
 
     if (!response.ok) {
-      throw new Error('Failed to fetch membership data');
+      throw new Error('Failed to fetch account summary data');
     }
 
     return await response.json();
@@ -117,7 +120,7 @@ function getInititals(firstName, lastName) {
 
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export async function getUserInfo() {
-  const membershipData = await getMembership();
+  const membershipData = await getAccountSummary();
   const {
     responsePayload: {
       data: [userData],

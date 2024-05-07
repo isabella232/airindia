@@ -288,7 +288,13 @@ async function setupProfileInfo(profileElem) {
   `;
 
   profileElem?.appendChild(profileWrapper);
-  // profileElem.addEventListener('click', toggleProfileInfo);
+  const userNameElem = document.querySelector('header .icon.icon-profile');
+  if (userNameElem?.parentElement) {
+    const profileElemChildren = [...userNameElem.parentElement.childNodes];
+    if (profileElemChildren.length > 0) {
+      profileElemChildren.at(-1).textContent = userInfo?.name;
+    }
+  }
 }
 
 function toggleProfileInfo() {
