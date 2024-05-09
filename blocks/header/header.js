@@ -283,7 +283,7 @@ async function setupProfileInfo(profileElem) {
     <div class="user-actions">
       <button type="button" class="my-account">My account</button>
       <button type="button" class="change-pwd">Change Password</button>
-      <button type="button" class="logoutbtn">Log out</button>
+      <button type="button" class="logoutbtn" onclick='signOut();'>Log out</button>
     </div>
   `;
 
