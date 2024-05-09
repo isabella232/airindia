@@ -353,6 +353,7 @@ header nav .nav-sections {
   height: 90vh;
   padding: 0 1rem;
   width: 100vw;
+  overflow: auto;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -664,6 +665,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     position: static;
     grid-area: unset;
     order: 3;
+    overflow: unset;
   }
 
   header .nav-wrapper nav .nav-tools {
