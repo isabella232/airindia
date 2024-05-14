@@ -151,6 +151,10 @@ header
   color: var(--ai-page-text-color);
 }
 
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-name {
+  color: var(--color-black);
+}
+
 .section.nav-tools .default-content-wrapper .profile-wrapper .user-points {
   border: 1px solid var(--ai-grey-border);
   border-radius: 4px;

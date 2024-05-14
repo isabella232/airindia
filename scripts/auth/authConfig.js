@@ -78,7 +78,7 @@ msalConfig = {
     authWellknownEndpointUrl: `${b2cPolicies.authorities.signUpSignIn.authority}/.well-known/openid-configuration`,
     knownAuthorities: [b2cPolicies.authorityDomain], // You must identify your tenant's domain as a known authority.
     redirectUri: config.redirectUri, // You must register this URI on Azure Portal/App Registration. Defaults to "window.location.href".
-    postLogoutRedirectUri: window.location.origin, // Simply remove this line if you would like navigate to index page after logout.
+    postLogoutRedirectUri: window.location.href, // Simply remove this line if you would like navigate to index page after logout.
     navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
   },
   cache: {

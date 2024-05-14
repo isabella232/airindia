@@ -5,18 +5,6 @@ const AIEnvBaseUrl = {
   PROD: 'https://api-loyalty.airindia.com/',
 };
 
-if (window.sessionStorage.getItem('lyt-ud') !== null) {
-  const authUserData = JSON.parse(decode(window.sessionStorage.getItem('lyt-ud')));
-  if (authUserData.FIRSTNAME !== undefined) {
-    if (authUserData.FIRSTNAME.length > 16) {
-      const tempFNM = authUserData.FIRSTNAME.substring(0, 16);
-      document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = `${tempFNM}...`;
-    } else document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = authUserData.FIRSTNAME; // TASK - 14996,
-  }
-  document.getElementById('signIn').classList.add('d-none');
-  document.getElementById('signOut').classList.remove('d-none');
-}
-
 if (window.sessionStorage.getItem('lty-md') !== null) { // Added for Loyalty Rebranding
   const ltyUserData = JSON.parse(decode(JSON.stringify(window.sessionStorage.getItem('lty-md'))));
   // populateLoyaltyMemberDetails(ltyUserData);
@@ -38,7 +26,6 @@ let responseState = null;
 let idleTime = 0;
 const signInDrop = document.querySelector('.signin-drop');
 const signInDropMob = document.querySelector('.signin-drop-mob');
-const signTimeout = setTimeout(hideSignIn, 10000);
 
 const withoutLoginMenu = document.querySelectorAll('.withoutLogin');
 const loginMenu = document.querySelectorAll('.withLogin');
@@ -73,7 +60,13 @@ myMSALObj.addEventCallback((event) => {
 
 myMSALObj
   .handleRedirectPromise()
-  .then(handleResponse)
+  .then((res) => {
+      handleResponse(res);
+      if(res?.accessToken) {
+        const customEvent = new Event("LOGIN_SUCCESS");
+        window.dispatchEvent(customEvent);
+      }
+  })
   .catch((error) => {
     // if (error.errorMessage?.indexOf("AADB2C90118") > -1) {
     //     try {
@@ -102,7 +95,6 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
       if (document.getElementById('homepagerebrand') != null) {
         signInDrop?.classList.remove('d-none');
         signInDropMob?.classList.remove('d-none');
-        displaySignIn();
       }
     }
     this.recheckPageLoading();
@@ -119,7 +111,7 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
       username = originalSignInAccount.username
         ? originalSignInAccount.username
         : originalSignInAccount.name;
-      welcomeUser(username);
+      //welcomeUser(username);
       myMSALObj
         .acquireTokenSilent({
           account: myMSALObj.getAccountByHomeId(accountId),
@@ -149,50 +141,9 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
       encode('true'),
     );
 
-    // == ADDED FOR CAROUSEL BANNER : START ===
-    $('.bannerMain-slide').addClass('d-none');
-    if (document.querySelectorAll('.bannerMain')) {
-      document.querySelectorAll('.bannerMain')[0]?.remove();
-    }
-    // == ADDED FOR CAROUSEL BANNER: END ===
 
-    welcomeUser(username);
-    if (!checkLoginResponse) {
-      if (firstResponse) {
-        getEnvironment(responseState);
-      } else {
-        getEnvironment('');
-      }
-    }
     document.getElementById('isloggedIn')?.classList.remove('d-none'); // To show/hide paragraph in loyalty FAQ page
     document.getElementById('isNotloggedIn')?.classList.add('d-none');
-
-    $(document).ready(function () {
-      // Increment the idle time counter every minute.
-      const idleInterval = setInterval(timerIncrement, 60000); // 1 minute
-      // Zero the idle timer on mouse movement.
-      $(this).mousemove((e) => {
-        idleTime = 0;
-      });
-      $(this).keypress((e) => {
-        idleTime = 0;
-      });
-    });
-
-    if (withoutLoginMenu.length != 0) {
-      withoutLoginMenu.forEach((ele) => {
-        if (ele.classList.contains('withoutLogin')) {
-          ele.classList.add('d-none');
-        }
-      });
-    }
-    if (loginMenu.length != 0) {
-      loginMenu.forEach((ele) => {
-        if (ele.classList.contains('withLogin')) {
-          ele.classList.remove('d-none');
-        }
-      });
-    }
 
     /**
          * In order to obtain the ID Token in the cached obtained previously, you can initiate a
@@ -370,7 +321,7 @@ function changePassword() {
       }&tier_status=${
         tier_status
       }&emailId=${
-        email.EMAIL}`;
+        email}`;
 
       const changePwdUrl = document.createElement('a');
       changePwdUrl.href = PRUrl;
@@ -387,39 +338,6 @@ setTimeout(() => {
   viewSignIn = true;
 }, '3000');
 
-function displaySignIn() {
-  if (signInDrop || signInDropMob) {
-    if (signInDrop.classList.contains('hide-signin') || signInDropMob.classList.contains('hide-signin')) {
-      signInDrop.classList.remove('hide-signin');
-      signInDrop.classList.add('display-signin');
-      signInDropMob.classList.remove('hide-signin');
-      signInDropMob.classList.add('display-signin');
-    } else hideSignIn();
-  }
-}
-
-function hideSignIn() {
-  if (viewSignIn) {
-    $('.loginDrop').hide();
-    if (signInDrop || signInDropMob) {
-      signInDrop.classList.remove('display-signin');
-      signInDrop.classList.add('hide-signin');
-      signInDropMob.classList.remove('display-signin');
-      signInDropMob.classList.add('hide-signin');
-    }
-
-    setTimeout(() => {
-      if (signInDrop || signInDropMob) {
-        signInDrop.classList.add('d-none');
-        signInDropMob.classList.add('d-none');
-      }
-    }, '800');
-  }
-}
-
-function removeSignIn(x) {
-  if (viewSignIn) clearTimeout(signTimeout);
-}
 
 async function getEnvironment(tokenResponse) {
   if (window.sessionStorage.getItem('env')) {
@@ -436,7 +354,6 @@ async function getEnvironment(tokenResponse) {
 async function getLoyOcpSubsKey(aiEnv, tokenResponse) {
   if (window.sessionStorage.getItem('ltyOcp')) {
     const ltyOcpKey = decode(window.sessionStorage.getItem('ltyOcp'));
-    getMemberDetailsData(aiEnv, ltyOcpKey, tokenResponse);
   } else {
     let keyVaultUrl = '';
     let appName = '';
@@ -451,229 +368,7 @@ async function getLoyOcpSubsKey(aiEnv, tokenResponse) {
     if (response.ok && response.status == 200) {
       const OCPKey = (await response.json()).value;
       window.sessionStorage.setItem('ltyOcp', encode(OCPKey));
-      getMemberDetailsData(aiEnv, OCPKey, tokenResponse);
     } else signOut();
-  }
-}
-
-async function getMemberDetailsData(aiEnv, OCPKey, tokenResponse) {
-  let getMembershipUrl = '';
-  aiEnv === 'dev' ? getMembershipUrl = `${AIEnvBaseUrl.DEV}loyalty-dev/v3/membership/getAccountSummary` : aiEnv === 'qa' ? getMembershipUrl = `${AIEnvBaseUrl.QA}loyalty-qa/v3/membership/getAccountSummary` : aiEnv === 'stage' ? getMembershipUrl = `${AIEnvBaseUrl.STAGE}loyalty-pprd/v3/membership/getAccountSummary` : aiEnv === 'prod' && (getMembershipUrl = `${AIEnvBaseUrl.PROD}loyalty-prd/v3/membership/getAccountSummary`);
-
-  const accessToken = decode(window.sessionStorage.getItem('accessToken'));
-  const headerObj = {
-    Accept: 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${accessToken}`,
-    'Ocp-Apim-Subscription-Key': OCPKey,
-    'X-Request-Source': 'website',
-  };
-
-  const response = await fetch(getMembershipUrl, {
-    method: 'POST',
-    headers: headerObj,
-    body: JSON.stringify({}),
-  });
-  if (response.ok && response.status == 200) {
-    const userData = (await response.json()).responsePayload.data[0];
-    if (userData && userData !== undefined && userData !== null) {
-      populateMemberDetails(userData, tokenResponse);
-      window.sessionStorage.setItem('lty-md', encode(JSON.stringify(userData)));
-
-      const userFirstName = userData?.individual?.identity?.name?.romanized.firstName;
-      if (window.sessionStorage.getItem('lyt-ud') == null && userFirstName !== undefined) {
-        const ltyAuthUserData = {
-          FIRSTNAME: userData?.individual?.identity?.name?.romanized.firstName,
-          LASTNAME: userData?.individual?.identity?.name?.romanized.lastName,
-          PHONENO: userData?.contact?.phones[0].number,
-          DOB: userData?.individual?.identity?.birthDate,
-          EMAIL: userData?.contact?.emails[0].address,
-        };
-
-        window.sessionStorage.setItem(
-          'lyt-ud',
-          encode(JSON.stringify(ltyAuthUserData)),
-        );
-
-        if (userFirstName.length > 16) {
-          const e = userFirstName.substring(0, 16);
-          document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = `${e}...`;
-        } else document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = userFirstName;
-      }
-    }
-  } else signOut();
-}
-
-function populateMemberDetails(memberDetails, tokenResponse) { // NED TO REMOVE THIS FUNCTION======
-  if (memberDetails && memberDetails !== undefined && memberDetails !== null) {
-    // populateLoyaltyMemberDetails(memberDetails);
-    let slider_userIconBG = '';
-    const userInitials = document.querySelectorAll('.userInitials');
-    const userName = document.querySelectorAll('.userName');
-    const userMemDetails = document.querySelectorAll('.userMemDetails');
-    const userMemPrmEmail = document.querySelectorAll('.userMemPrmEmail');
-    const userClubDetails = document.querySelectorAll('.userClubDetails');
-    const userPointsDetails = document.querySelectorAll('.userPointsDetails');
-    const tempUserFistName = memberDetails?.individual?.identity?.name?.romanized.firstName;
-    const userLastName = memberDetails?.individual?.identity?.name?.romanized.lastName;
-    const tierStatus = memberDetails?.mainTier?.level?.toLowerCase();
-    loyaltyThemeSelection(memberDetails);
-
-    let userFistName = '';
-    userFistName = tempUserFistName.length > 16 ? `${tempUserFistName.substring(0, 16)}...` : tempUserFistName;
-
-    let userClub; let header_userIcon; let slider_userIcon; let
-      tierCard;
-    // let imgBaseURL = "/content/dam/air-india/air-india-rebrand/home/";
-    const imgBaseURL = '/content/dam/air-india/redesign-loyalty/icons/';
-    switch (tierStatus) {
-      case 'bas':
-        // userClub = 'Base tier';
-        userClub = 'Red';
-        slider_userIconBG = `${imgBaseURL}slide-userIconBG-red.svg`;
-        slider_userIcon = `${imgBaseURL}slide-userIconXl-base.svg`;
-        header_userIcon = `${imgBaseURL}header-ltyUserIcon-base.svg`;
-        if (document.querySelector('.mega-item.baseTier')) {
-          document.querySelector('.mega-item.baseTier').style.display = 'block';
-          tierCard = document.querySelector('.mega-item.baseTier .tier');
-        }
-        break;
-      case 'sec':
-        // userClub = 'Silver Edge Club';
-        userClub = 'Silver';
-        slider_userIconBG = `${imgBaseURL}slide-userIconBG-silver.svg`;
-        slider_userIcon = `${imgBaseURL}slide-userIconXl-silver.svg`;
-        header_userIcon = `${imgBaseURL}header-ltyUserIcon-silver.svg`;
-        if (document.querySelector('.mega-item.silverTier')) {
-          document.querySelector('.mega-item.silverTier').style.display = 'block';
-          tierCard = document.querySelector('.mega-item.silverTier .tier');
-        }
-        break;
-      case 'gec':
-        // userClub = 'Golden Edge Club';
-        userClub = 'Gold';
-        slider_userIconBG = `${imgBaseURL}slide-userIconBG-gold.svg`;
-        slider_userIcon = `${imgBaseURL}slide-userIconXl-gold.svg`;
-        header_userIcon = `${imgBaseURL}header-ltyUserIcon-gold.svg`;
-        if (document.querySelector('.mega-item.goldTier')) {
-          document.querySelector('.mega-item.goldTier').style.display = 'block';
-          tierCard = document.querySelector('.mega-item.goldTier .tier');
-        }
-        break;
-      case 'tmc':
-        // userClub = 'The Maharaja Club';
-        userClub = 'Platinum';
-        slider_userIconBG = `${imgBaseURL}slide-userIconBG-platinum.svg`;
-        slider_userIcon = `${imgBaseURL}slide-userIconXl-maharaja.svg`;
-        header_userIcon = `${imgBaseURL}header-ltyUserIcon-maharaja.svg`;
-        if (document.querySelector('.mega-item.maharajaTier')) {
-          document.querySelector('.mega-item.maharajaTier').style.display = 'block';
-          tierCard = document.querySelector('.mega-item.maharajaTier .tier');
-        }
-        break;
-    }
-    $('.nameicon').css('background-image', `url(${slider_userIconBG})`);
-    const ltyHeaderUserIcon = `<img src='${header_userIcon}' alt='User Icon'>`;
-    $('#signOut .userPriviledgeIcon').empty().append(ltyHeaderUserIcon);
-    window.sessionStorage.setItem('lty-memTier', encode(userClub));
-
-    const userFName = document.createElement('p');
-    const ffn = document.createElement('p');
-    const club = document.createElement('p');
-    const tierPts = document.createElement('p');
-    const accBtnLbl = document.createElement('p');
-    const svg = document.createElement('img');
-    userFName.setAttribute('id', 'fullname');
-    ffn.setAttribute('id', 'ffn');
-    club.setAttribute('id', 'club');
-    tierPts.setAttribute('id', 'tier-points');
-    accBtnLbl.setAttribute('id', 'account');
-    if (userClub.toLowerCase() === 'silver') {
-      svg.setAttribute('src', '/content/dam/air-india/redesign-loyalty/icons/arrow-forward-black.svg');
-    } else svg.setAttribute('src', '/content/dam/air-india/redesign-loyalty/icons/arrow-forward.svg');
-    svg.setAttribute('id', 'goto');
-    const fname = tempUserFistName.length > 16 ? tempUserFistName.substring(0, 16) : tempUserFistName;
-    userFName.innerHTML = `${fname} ${userLastName[0].toUpperCase()}`;
-    ffn.innerHTML = `ID - ${memberDetails?.membershipId}`;
-    club.innerHTML = userClub;
-    tierPts.innerHTML = `${Number(memberDetails?.loyaltyAward[0].amount)?.toLocaleString()} POINTS`;
-    accBtnLbl.innerHTML = 'View My Account';
-
-    tierCard?.appendChild(userFName);
-    tierCard?.appendChild(ffn);
-    tierCard?.appendChild(club);
-    tierCard?.appendChild(tierPts);
-    tierCard?.appendChild(accBtnLbl);
-    accBtnLbl?.appendChild(svg);
-
-    if (tokenResponse != '') {
-      const redirectPageName = 'redirect.html';
-      if ((tokenResponse?.state || '').includes(redirectPageName)) {
-        window.location.href = '/';
-      } else {
-        window.location.href = tokenResponse.state;
-      }
-    } else {
-      recheckPageLoading();
-    }
-
-    if ($('#loyaltyBannerFigure')) {
-      document.getElementById('bnr-dsktop')?.setAttribute('data-srcset', document.getElementById('login-dsktop-img')?.innerHTML);
-      document.getElementById('bnr-mob')?.setAttribute('data-srcset', document.getElementById('login-mob-img')?.innerHTML);
-      if (document.getElementById('bnr-dflt')) {
-        document.getElementById('bnr-dflt').src = document.getElementById('login-dsktop-img')?.innerHTML || '';
-      }
-    }
-
-    const signInUserDataSlide = document.querySelectorAll('.signedId_Section');
-    signInUserDataSlide.forEach((el) => {
-      el.classList.remove('d-none');
-      document.querySelector('.root').classList.add('loggedIn');
-      const ltySliderUserIcon = `<img src='${slider_userIcon}' alt='User Icon'>`;
-      $('.signedIn-userIconDiv').empty().append(ltySliderUserIcon);
-      el.getElementsByClassName('userName')[0].innerHTML = userFistName;
-      el.querySelectorAll('.userPriviledge')[0].innerHTML = userClub;
-      el.querySelectorAll('.userPoints')[0].innerHTML = `${Number(memberDetails?.loyaltyAward[0].amount)?.toLocaleString()} POINTS`;
-    });
-
-    if (userClubDetails !== null && userPointsDetails !== null) {
-      userInitials[0].innerHTML = userFistName[0].toUpperCase() + userLastName[0].toUpperCase();
-      userName[0].innerHTML = userFistName;
-      userMemDetails[0].innerHTML = memberDetails?.membershipId;
-      userMemPrmEmail[0].innerHTML = memberDetails?.contact?.emails[0].address;
-      userClubDetails[0].innerHTML = userClub;
-      userPointsDetails[0].innerHTML = `${Number(memberDetails?.loyaltyAward[0].amount)?.toLocaleString()} POINTS`;
-      userInitials[1].innerHTML = userFistName[0].toUpperCase() + userLastName[0].toUpperCase();
-      userName[1].innerHTML = userFistName;
-      userMemDetails[1].innerHTML = memberDetails?.membershipId;
-      userMemPrmEmail[1].innerHTML = memberDetails?.contact.emails[0].address;
-      userClubDetails[1].innerHTML = userClub;
-      userPointsDetails[1].innerHTML = `${Number(memberDetails?.loyaltyAward[0].amount)?.toLocaleString()} POINTS`;
-    }
-  } else if (window.sessionStorage.getItem('lyt-ud') !== null) {
-    const temp_ud = decode(window.sessionStorage.getItem('lyt-ud'));
-    const ltyUserData = JSON.parse(JSON.stringify(temp_ud));
-    const ltyUserFname = ltyUserData.FIRSTNAME;
-    const ltyUserLname = ltyUserData.LASTNAME;
-
-    const userInis = document.querySelectorAll('.userInitials');
-    const ltyUserName = document.querySelectorAll('.userName');
-    const ltyUserPrmEmail = document.querySelectorAll('.userMemPrmEmail');
-
-    userInis[0].innerHTML = ltyUserFname[0].toUpperCase() + ltyUserLname[0].toUpperCase();
-    ltyUserName[0].innerHTML = ltyUserFname;
-    ltyUserPrmEmail[0].innerHTML = ltyUserData.EMAIL;
-    userInis[1].innerHTML = ltyUserFname[0].toUpperCase() + ltyUserLname[0].toUpperCase();
-    ltyUserName[1].innerHTML = ltyUserFname;
-    ltyUserPrmEmail[1].innerHTML = ltyUserData.EMAIL;
-
-    document.querySelectorAll('.loginDrop .myAccbtn')[0].style.display = 'none';
-    document.querySelectorAll('.loginDrop .myAccbtn')[1].style.display = 'none';
-    document.querySelectorAll('.loginDrop .userClubDetails')[0].style.display = 'none';
-    document.querySelectorAll('.loginDrop .userClubDetails')[1].style.display = 'none';
-    document.querySelectorAll('.loginDrop .userPts')[0].style.display = 'none';
-    document.querySelectorAll('.loginDrop .userPts')[1].style.display = 'none';
   }
 }
 

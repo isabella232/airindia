@@ -1,3 +1,5 @@
+import { STORAGE } from './constants.js';
+
 const AIEnvBaseUrl = {
   DEV: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
   QA: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
@@ -145,14 +147,41 @@ function getInititals(firstName, lastName) {
   );
 }
 
+function saveAccountSummary(membershipDataResponse) {
+  const [membershipData] = membershipDataResponse?.responsePayload?.data || [];
+  sessionStorage.setItem(STORAGE.LTY_MD, window.encode(JSON.stringify(membershipData)));
+  sessionStorage.setItem(
+    STORAGE.LTY_MEM_TIER,
+    window.encode(JSON.stringify(membershipData?.mainTier?.allianceTier?.ffpTierCode)),
+  );
+  sessionStorage.setItem(
+    STORAGE.LTY_UD,
+    window.encode(JSON.stringify(membershipData?.contact?.emails?.[0]?.address)),
+  );
+  return membershipData;
+}
+
+function getAccountSummaryFromSessionStorage() {
+  const accountSummary = sessionStorage.getItem(STORAGE.LTY_MD);
+  let accountSummaryData;
+  try {
+    if (accountSummary) {
+      accountSummaryData = JSON.parse(window.decode(accountSummary));
+    }
+  } catch (err) {
+    accountSummaryData = null;
+  }
+  return accountSummaryData;
+}
+
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export async function getUserInfo() {
-  const membershipData = await getAccountSummary();
-  const {
-    responsePayload: {
-      data: [userData],
-    },
-  } = membershipData;
+  let membershipData = getAccountSummaryFromSessionStorage();
+  if (!membershipData) {
+    membershipData = await getAccountSummary();
+    membershipData = saveAccountSummary(membershipData);
+  }
+
   const {
     individual: {
       identity: {
@@ -165,7 +194,8 @@ export async function getUserInfo() {
     },
     loyaltyAward: [loyalty],
     mainTier: { label: club },
-  } = userData;
+  } = membershipData;
+
   return {
     initials: getInititals(romanized?.firstName, romanized?.lastName),
     name: romanized?.firstName,

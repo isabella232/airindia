@@ -28,4 +28,10 @@ export const EVENTS = {
   ADOBE_LAUNCH_LOADED: 'ADOBE_LAUNCH_LOADED',
 };
 
+export const STORAGE = {
+  LTY_MD: 'lty-md',
+  LTY_MEM_TIER: 'lty-memTier',
+  LTY_UD: 'lyt-ud',
+};
+
 export default CMP_CONFIG;
