@@ -315,7 +315,7 @@ function changePassword() {
       }&code_challenge_method=S256&nonce=${
         codeVerifier
       }&redirect_uri=${
-        msalConfig.auth.redirectUri
+        msalConfig.auth.postLogoutRedirectUri
       }&scope=openid%20offline_access%20profile%20phone%20email&response_type=id_token&points=${
         flyingReturnsPointBalance
       }&tier_status=${
@@ -451,6 +451,37 @@ function nonloggedInComEnrollnowlink() {
   onClickSignUp(0);
 }
 
+function createSignupUrls(createAccountUrl) {
+  const signupbtn = document.querySelectorAll('.enrollnowlink');
+  if (signupbtn.length > 0) {
+    signupbtn.forEach((el) => {
+      el.setAttribute('href', createAccountUrl);
+      el.removeAttribute('target');
+    });
+  }
+}
+
+function observeMutations(createAccountUrl) {
+    // Select the target node to observe
+  const targetNode = document.querySelector('body');
+  
+  // Create a new MutationObserver instance
+  const observer = new MutationObserver((mutationsList, observer) => {
+      // Handle mutations
+      for (const mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+              createSignupUrls(createAccountUrl);
+          }
+      }
+  });
+  
+  // Options for the observer (e.g., types of mutations to observe)
+  const config = { childList: true, subtree: true };
+  
+  // Start observing the target node for specified mutations
+  observer.observe(targetNode, config);
+}
+
 function onClickSignUp(isLoading) {
   const script = document.createElement('script');
   script.type = 'text/javascript';
@@ -473,15 +504,8 @@ function onClickSignUp(isLoading) {
       redirect_uri
     }&scope=openid%20offline_access%20profile%20phone%20email&response_type=code&prompt=login&option=signupflow`;
 
-    const signupbtn = document.querySelectorAll('.enrollnowlink');
-    const signinbtn = document.querySelectorAll('#Sign-In');
-    const newSignIn = document.querySelectorAll('.newSignIn');
-    if (signupbtn.length > 0) {
-      signupbtn.forEach((el) => {
-        el.setAttribute('href', createAccountUrl);
-        el.removeAttribute('target');
-      });
-    }
+    createSignupUrls(createAccountUrl);
+    observeMutations(createAccountUrl);
 
     if (document.getElementById('nonloggedInComEnrollnowlink')) {
       window.location = document.getElementById('nonloggedInComEnrollnowlink').href;
@@ -489,17 +513,6 @@ function onClickSignUp(isLoading) {
 
     if (document.getElementById('toolTipSignup') && isLoading == 0) {
       window.location = document.getElementById('toolTipSignup').href;
-    }
-
-    if (signinbtn.length > 0) {
-      signinbtn.forEach((el) => {
-        el.removeAttribute('target');
-      });
-    }
-    if (newSignIn.length > 0) {
-      newSignIn.forEach((el) => {
-        el.removeAttribute('target');
-      });
     }
   });
 }

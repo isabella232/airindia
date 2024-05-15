@@ -5,6 +5,7 @@ import {
   getPlaceholderDataFor,
   isLoggedIn,
   addDefaultHrefToElementAnchorTags,
+  containsHashAndState,
 } from '../../scripts/utils/blockUtils.js';
 import { pushPageLoadedAnalytics } from '../../scripts/analytics.js';
 import { EVENTS } from '../../scripts/utils/constants.js';
@@ -273,13 +274,22 @@ async function setupProfileInfo() {
   const navTools = document.querySelector('.nav-tools');
   const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
 
+  if (containsHashAndState()) {
+    paragraphs[paragraphs.length - 2]?.classList.add('visibility-none');
+  }
+
   if (!isLoggedIn()) {
     paragraphs[paragraphs.length - 1]?.classList.add('hide');
     paragraphs[paragraphs.length - 2]?.classList.add('show');
     return;
   }
+  paragraphs[paragraphs.length - 2]?.classList.remove('show');
   paragraphs[paragraphs.length - 2]?.classList.add('hide');
+  paragraphs[paragraphs.length - 1]?.classList.remove('hide');
   paragraphs[paragraphs.length - 1]?.classList.add('show');
+  paragraphs[paragraphs.length - 2]?.classList.add('visibility-none');
+  paragraphs[paragraphs.length - 1]?.classList.add('visibility-none');
+
   paragraphs[paragraphs.length - 1]?.addEventListener('click', toggleProfileInfo);
 
   const profileElem = paragraphs?.[paragraphs.length - 1];
@@ -299,7 +309,7 @@ async function setupProfileInfo() {
       <h6 class="user-points">${userInfo?.points} POINTS</h6>
       <div class="user-club">${userInfo?.club}</div>
       <div class="user-actions">
-        <button type="button" class="my-account">My account</button>
+        <button type="button" class="my-account" onclick='redirectToAccount();'>My account</button>
         <button type="button" class="change-pwd" onclick='changePassword();'>Change Password</button>
         <button type="button" class="logoutbtn" onclick='signOut();'>Log out</button>
       </div>
@@ -316,6 +326,8 @@ async function setupProfileInfo() {
       }
     });
   }
+  paragraphs[paragraphs.length - 2]?.classList.remove('visibility-none');
+  paragraphs[paragraphs.length - 1]?.classList.remove('visibility-none');
 }
 
 function attachSiginListener(parentElem) {

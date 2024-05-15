@@ -605,6 +605,10 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   font-style: normal;
 }
 
+.visibility-none {
+  visibility: hidden !important;
+}
+
 /** MEDIA QUERY FOR >MOBILE */
 
 @media (min-width: 1024px) {
@@ -939,6 +943,9 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   header .nav-wrapper .section.nav-tools .default-content-wrapper p.show {
     font-size: inherit;
     cursor: pointer;
+    min-width: 130px;
+    max-width: 260px;
+    text-overflow: ellipsis;
   }
 
   .header-nav-search-box {

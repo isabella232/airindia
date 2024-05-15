@@ -224,3 +224,27 @@ export function addDefaultHrefToElementAnchorTags(elementId) {
     }
   });
 }
+
+function getAllHashParams() {
+  const hashParams = {};
+  const hash = window.location.hash.substring(1);
+  const params = hash.split('&');
+
+  params.forEach((item) => {
+    const param = item.split('=');
+    const key = decodeURIComponent(param[0]);
+    const value = decodeURIComponent(param[1]);
+    hashParams[key] = value;
+  });
+
+  return Object.keys(hashParams);
+}
+
+function arrayContainsAllItems(array = [], items = []) {
+  return items.every((item) => array?.includes(item));
+}
+
+export function containsHashAndState() {
+  const hashParams = getAllHashParams();
+  return arrayContainsAllItems(hashParams, ['state', 'client_info']);
+}

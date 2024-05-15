@@ -28,7 +28,7 @@ function isRelativePath(link) {
   // Get the href attribute of the link
   const href = link.getAttribute('href');
   // Check if the href starts with '/' or does not start with 'http://' or 'https://'
-  return href.startsWith('/') || (!href.startsWith('http://') && !href.startsWith('https://'));
+  return href.startsWith('/') || (!href.startsWith('#')) || href.startsWith('http://') || href.startsWith('https://');
 }
 
 function addDomainToLinks(element) {
