@@ -3113,7 +3113,7 @@ body,html {
 
 
 button {
-    border-radius: 0
+    border-radius: 0;
 }
 
 
@@ -3138,12 +3138,11 @@ button {
 .row {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
-
     display: flex;
     flex-wrap: wrap;
-    margin-left: calc(var(--bs-gutter-x)*- .5);
-    margin-right: calc(var(--bs-gutter-x)*- .5);
-    margin-top: calc(var(--bs-gutter-y)*- 1)
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-.5* var(--bs-gutter-x));
 }
 
 .row>* {
@@ -12303,7 +12302,6 @@ main .section.booking-container .booking-wrapper {
 .booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {
     margin-left: 0;
     left: 50%;
-    transform: translateX(-50%);
     bottom: 200%;
 }
 
@@ -12315,6 +12313,10 @@ main .section.booking-container .booking-wrapper {
 
     .booking.search-flight {
         min-height: 260px;
+    }
+
+    .booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {
+        transform: translateX(-50%);
     }
 }
 
@@ -12350,4 +12352,44 @@ main .section.booking-container .booking-wrapper {
 
 .booking .tooltip {
     text-align: left;
+}
+
+.booking-form {
+    --bs-gutter-x: 1.5rem;
+}
+
+.offcanvas.offcanvas-bottom {
+    height: auto;
+    z-index: 999999;
+}
+
+.offcanvas.offcanvas-bottom .offcanvas-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.offcanvas.offcanvas-bottom .offcanvas-title {
+    line-height: 1.5;
+    margin: 0;
+}
+
+.offcanvas.offcanvas-bottom .offcanvas-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.offcanvas.offcanvas-bottom .offcanvas-body button {
+    margin: 0;
+}
+
+#searchflightangularselecter .booking-form {
+    padding: 24px;
+}
+
+#searchflightangularselecter .booking-form .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
 }
