@@ -106,7 +106,7 @@ function decorateExternalLinks($main) {
       && $a.href.startsWith('http')
       && !$a.href.startsWith(window.location.origin)
       && !thisUrl?.origin?.endsWith(HOST.domain)
-      && (thisUrl.hash === '#signin' || thisUrl.hash === '#signup')) {
+      && !(thisUrl.hash === '#signin' || thisUrl.hash === '#signup')) {
       $a.rel = 'noopener noreferrer';
       $a.target = '_blank';
     }
