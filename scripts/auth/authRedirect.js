@@ -5,6 +5,12 @@ const AIEnvBaseUrl = {
   PROD: 'https://api-loyalty.airindia.com/',
 };
 
+const SIGNUP_REDIECTION_CONFIG = {
+  dev: 'https://newai-staging.airindia.com/in/en/flying-returns/account-summary.html',
+  stage: 'https://newai-staging.airindia.com/in/en/flying-returns/account-summary.html',
+  prod: 'https://newai-staging.airindia.com/in/en/flying-returns/account-summary.html',
+}
+
 if (window.sessionStorage.getItem('lty-md') !== null) { // Added for Loyalty Rebranding
   const ltyUserData = JSON.parse(decode(JSON.stringify(window.sessionStorage.getItem('lty-md'))));
   // populateLoyaltyMemberDetails(ltyUserData);
@@ -482,12 +488,21 @@ function observeMutations(createAccountUrl) {
   observer.observe(targetNode, config);
 }
 
+function getEnvType(hostname = window.location.hostname) {
+  const fqdnToEnvType = {
+    'www.airindia.com': 'live',
+    'airindia.com': 'live',
+    'main--airindia--hlxsites.hlx.page': 'preview',
+    'main--airindia--hlxsites.hlx.live': 'live',
+  };
+  return fqdnToEnvType[hostname] || 'dev';
+}
+
 function onClickSignUp(isLoading) {
   const script = document.createElement('script');
   script.type = 'text/javascript';
-
-  const redirect_uri = `${window.location.origin}/in/en/flying-returns/account-summary.html`;
-
+  const env = getEnvType();
+  const redirect_uri = SIGNUP_REDIECTION_CONFIG[env];
   const codeVerifier = generateCodeVerifier();
   generateCodeChallenge(codeVerifier).then((codeChallenge) => {
     const createAccountUrl = `https://${
