@@ -7,6 +7,14 @@ function createAccordion() {
 
   for (i = 0; i < acc.length - 1; i += 1) {
     acc[i].addEventListener('click', ({ currentTarget }) => {
+      // Close all other accordions
+      document.querySelectorAll('.footer-top-item h1').forEach((el) => {
+        if (el !== currentTarget) {
+          el.classList.remove('active');
+          el.nextElementSibling.style.maxHeight = null;
+        }
+      });
+      // Toggle current accordion
       currentTarget.classList.toggle('active');
       const panel = currentTarget.nextElementSibling;
       if (panel.style.maxHeight) {

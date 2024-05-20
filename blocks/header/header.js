@@ -95,7 +95,7 @@ function createSearchBox(label = 'Search') {
     <input type="text" id="search-box" name="search-box" aria-label="Search">
     <a class="search-icon">
       <img data-icon-name="search" src="/icons/search-red.svg" class="search-icon" alt="Search" />
-    </a> 
+    </a>
   </div>`;
 
   const searchBoxWrapper = document.createElement('div');
@@ -477,7 +477,8 @@ function addAltTextToHeaderIcons() {
 export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  // TODO: Remove draft path before merge
+  const navPath = navMeta ? new URL(navMeta).pathname : '/drafts/nav';
   const fragment = await loadFragment(navPath);
 
   // decorate nav DOM
@@ -497,11 +498,12 @@ export default async function decorate(block) {
   if (brandImg) {
     brandImg.setAttribute('alt', 'Air India');
   }
-  const brandLink = navBrand?.querySelector('.button');
-
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  const brandLinks = navBrand.querySelectorAll('.button');
+  if (brandLinks) {
+    brandLinks.forEach((link) => {
+      link.className = '';
+      link.closest('.button-container').className = '';
+    });
   }
 
   const navSections = nav.querySelector('.nav-sections');

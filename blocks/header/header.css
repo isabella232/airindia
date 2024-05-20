@@ -324,6 +324,12 @@ header .nav-brand {
   line-height: 1;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
+header .nav-brand a {
+  display: flex;
+  width: 9rem;
+}
+
 header nav .nav-brand .icon {
   height: unset;
   width: unset;
@@ -334,9 +340,10 @@ header .nav-brand .icon.icon-ai-logo-red {
 }
 
 header .nav-wrapper:hover .nav-brand .icon.icon-ai-logo-red,
-header .nav-wrapper.expanded .nav-brand .icon.icon-ai-logo-red, 
+header .nav-wrapper.expanded .nav-brand .icon.icon-ai-logo-red,
 header .nav-wrapper.short .nav-brand .icon.icon-ai-logo-red {
   display: block;
+  width: 9rem;
 }
 
 header .nav-wrapper:hover .nav-brand .icon.icon-ai-logo-white,

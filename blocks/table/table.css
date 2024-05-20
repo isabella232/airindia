@@ -1,10 +1,13 @@
+.block.table > div > div {
+  overflow-x: auto;
+}
+
 .block.table table {
   border: 1px solid var(--ai-table-border-color);
   margin-bottom: 10px;
   width: 100%;
   caption-side: bottom;
   border-collapse: collapse;
-  table-layout: fixed;
 }
 
 .block.table th {
