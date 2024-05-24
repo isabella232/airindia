@@ -221,7 +221,7 @@ function removeBoomr() {
 
   scriptTags.forEach((scriptTag) => {
     // Check if the script tag contains inline code
-    if (scriptTag.innerHTML.includes('window.BOOMR_mq')) {
+    if (scriptTag.innerHTML.includes('BOOMR')) {
       // Remove the script tag from the document
       scriptTag.parentNode.removeChild(scriptTag);
     }
