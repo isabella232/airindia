@@ -215,4 +215,17 @@ async function loadPage() {
   loadDelayed();
 }
 
+function removeBoomr() {
+  // Get all script tags in the document
+  const scriptTags = document.querySelectorAll('script');
+
+  scriptTags.forEach((scriptTag) => {
+    // Check if the script tag contains inline code
+    if (scriptTag.innerHTML.includes('window.BOOMR_mq')) {
+      // Remove the script tag from the document
+      scriptTag.parentNode.removeChild(scriptTag);
+    }
+  });
+}
+removeBoomr();
 loadPage();
