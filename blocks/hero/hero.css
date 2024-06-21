@@ -29,7 +29,7 @@ main .hero::after {
   width: 100%;
 }
 
-main .hero h2 {
+main .hero h1 {
   font-family: var(--ai-regular-font-family);
   font-size: var(--heading-font-size-m);
   font-weight: var(--font-weight-bold);
@@ -62,7 +62,7 @@ main .hero img {
     padding: 0;
   }
 
-  main .hero h2 {
+  main .hero h1 {
     font-size: var(--heading-font-size-xl);
     line-height: 56px;
     transform: translateY(140%);
@@ -70,7 +70,7 @@ main .hero img {
 }
 
 @media (min-width: 1200px) {
-  main .hero h2 {
+  main .hero h1 {
     max-width: 1200px;
     margin: 0 auto;
   }
