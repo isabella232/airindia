@@ -3,7 +3,7 @@ footer {
   background: url("../../icons/header-pattern.svg") repeat-x,linear-gradient(0deg,var(--ai-color-container),var(--ai-color-container));
 }
 
-footer h1 {
+footer h2 {
   color: var(--global-ai-purple);
   font-size: var(--paragraph-font-size-s);
   font-weight: 500;
@@ -49,7 +49,7 @@ footer .footer {
   justify-content: space-between;
 }
 
-.footer-middle-item h1{
+.footer-middle-item h2{
   margin-top: 0;
   padding: 20px 0;
 }
@@ -143,7 +143,7 @@ footer .footer .footer-top-item p:nth-last-of-type(-n+2){
   border-bottom: 1px solid var(--ai-footer-text);
 }
 
-.footer-top-item h1::after {
+.footer-top-item h2::after {
   content: '\276F';
   transform: rotate(90deg);
   color: var(--ai-accordion-icon-color);
@@ -152,7 +152,7 @@ footer .footer .footer-top-item p:nth-last-of-type(-n+2){
   margin-left: 5px;
 }
 
-.footer-top .default-content-wrapper .footer-top-item:last-child h1::after{
+.footer-top .default-content-wrapper .footer-top-item:last-child h2::after{
   content: '';
 }
 
@@ -225,7 +225,7 @@ footer .footer .footer-top-item p:nth-last-of-type(-n+2){
     border-bottom: none;
   }
 
-  .footer-top-item h1::after{
+  .footer-top-item h2::after{
     content: none;
   }
 
@@ -240,7 +240,7 @@ footer .footer .footer-top-item p:nth-last-of-type(-n+2){
     margin: 0 15px;
   }
   
-  .footer-middle-item h1{
+  .footer-middle-item h2{
     padding: 0;
   }
 
@@ -299,7 +299,7 @@ footer.block {
   font-family: var(--body-font-family);
 }
 
-footer.block h1 {
+footer.block h2 {
   margin-top: 1em;
   margin-bottom: 0.5em;
 }

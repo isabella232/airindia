@@ -2,13 +2,13 @@ import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 function createAccordion() {
-  const acc = document.querySelectorAll('.footer-top-item h1');
+  const acc = document.querySelectorAll('.footer-top-item h2');
   let i;
 
   for (i = 0; i < acc.length - 1; i += 1) {
     acc[i].addEventListener('click', ({ currentTarget }) => {
       // Close all other accordions
-      document.querySelectorAll('.footer-top-item h1').forEach((el) => {
+      document.querySelectorAll('.footer-top-item h2').forEach((el) => {
         if (el !== currentTarget) {
           el.classList.remove('active');
           el.nextElementSibling.style.maxHeight = null;
@@ -52,13 +52,13 @@ function decorateFooter(block, selectorClass) {
   while (index < children.length) {
     const topItem = document.createElement('div');
     topItem.classList.add(`${selectorClass}-item`);
-    // Skip H1 if title not available
+    // Skip H2 if title not available
     if (children[index].innerText !== '_blank') { topItem.appendChild(children[index]); }
     index += 1;
 
     while (index < children.length) {
-      if (children[index].tagName === 'H1') {
-        if (!children[index + 1] || (children[index - 1].tagName === 'H1' && children[index + 1].tagName !== 'UL')) {
+      if (children[index].tagName === 'H2') {
+        if (!children[index + 1] || (children[index - 1].tagName === 'H2' && children[index + 1].tagName !== 'UL')) {
           topItem.appendChild(children[index]);
         } else {
           break;
