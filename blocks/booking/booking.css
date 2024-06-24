@@ -12312,7 +12312,7 @@ main .section.booking-container .booking-wrapper {
     }
 
     .booking.search-flight {
-        min-height: 260px;
+        min-height: 228px;
     }
 
     .booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {

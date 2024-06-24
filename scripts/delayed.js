@@ -17,7 +17,7 @@ sampleRUM('cwv');
  * Google Tag Manager
 * */
 async function loadGTM() {
-  loadScript(SCRIPTS.gtmSrc);
+  await loadScript(SCRIPTS.gtmSrc);
   const scriptTag = document.createElement('script');
   scriptTag.innerHTML = `
     window.dataLayer = window.dataLayer || [];
@@ -36,7 +36,12 @@ function triggerAdobeLaunchLoadedEvent() {
 }
 
 async function loadAdobeLaunch() {
-  await loadScript(SCRIPTS.wcmDataLayer);
+  const scripts = SCRIPTS.wcmDataLayer?.split(',');
+  if (scripts?.length > 0) {
+    [...scripts].forEach(async (script) => {
+      await loadScript(script);
+    });
+  }
   window.adobeDataLayer = window.adobeDataLayer || [];
   await loadScript(SCRIPTS.adobeotmSrc[getEnvType()]);
   triggerAdobeLaunchLoadedEvent();

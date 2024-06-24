@@ -16,6 +16,10 @@ header {
   z-index: 999;
 }
 
+header .header {
+  padding: 0;
+}
+
 header .nav-wrapper {
   position: fixed;
   background-color: transparent;
