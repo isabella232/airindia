@@ -147,6 +147,14 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  // check if url has `booking=lazy` query param and load booking block
+  if (window.location.search.includes('booking=lazy') && document.querySelector('.booking')) {
+    import('../blocks/booking/booking.js').then(({ initBooking }) => {
+      initBooking();
+    });
+  }
+
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));

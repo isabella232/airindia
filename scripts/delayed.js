@@ -3,12 +3,14 @@ import { sampleRUM, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getEnvType } from './scripts.js';
 import loadExternalComponent from './utils/initializer.js';
-import { initBooking } from '../blocks/booking/booking.js';
 import { SCRIPTS, EVENTS } from './utils/constants.js';
 
-// Initialize the booking block if present on the page
-if (document.querySelector('.booking')) {
-  await initBooking();
+// Initialize the booking block if url has `booking=lazy` query param
+// and if booking element present on the page and
+if (!window.location.search.includes('booking=lazy') && document.querySelector('.booking')) {
+  import('../blocks/booking/booking.js').then(({ initBooking }) => {
+    initBooking();
+  });
 }
 
 // Core Web Vitals RUM collection
